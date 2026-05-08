@@ -1,7 +1,5 @@
 # Writing Triadic — 三角色协作写作 Skill
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-blue)](https://openclaw.ai)
 
 > 写作不是一次 AI 生成任务。它需要**深度理解意图**、**精准执行**、**真实读者反馈**。
 
@@ -96,6 +94,3 @@ writing-triadic/
 - OpenAI: `openai/gpt-5` + `openai/gpt-5-mini`
 - Anthropic: `anthropic/claude-sonnet-4-20250514` + `anthropic/claude-haiku-4-5-20251001`
 
-## 📄 License
-
-MIT © 2025
