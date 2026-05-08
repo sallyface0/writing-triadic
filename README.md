@@ -90,7 +90,7 @@ writing-triadic/
 
 ## 🌍 国际化
 
-默认使用 DeepSeek 模型（对中国用户友好），其他用户可替换为：
+默认使用 DeepSeek 模型，其他用户可替换为：
 - OpenAI: `openai/gpt-5` + `openai/gpt-5-mini`
 - Anthropic: `anthropic/claude-sonnet-4-20250514` + `anthropic/claude-haiku-4-5-20251001`
 
