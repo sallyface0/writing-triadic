@@ -1,4 +1,4 @@
-# Model Configuration Reference
+# Model Configuration Reference — v2.0
 
 ## Default Models (Recommended)
 
@@ -7,6 +7,7 @@
 | Creator (main AI) | `deepseek/deepseek-v4-pro` | 1M | Reasoning model for deep intent mining & quality oversight |
 | Executor (sub-agent) | `deepseek/deepseek-v4-flash` | 1M | Fast generation, cost-effective for producing multiple drafts |
 | Reader (sub-agent) | `deepseek/deepseek-v4-pro` | 1M | Reasoning model needed for critical evaluation & comparison |
+| Evolution Analyst (sub-agent) | `deepseek/deepseek-v4-pro` | 1M | Precise judgment on preference vs one-off, conflict resolution |
 
 ## Rationale for Executor using Flash (not Pro)
 
@@ -14,7 +15,7 @@ The Executor's job is to follow rules and templates — it doesn't need deep rea
 - Speed (fast multi-draft generation)
 - Cost efficiency (writing often requires multiple iterations)
 
-The Creator and Reader do the heavy intellectual work. The Executor executes.
+The Creator, Reader, and Evolution Analyst do the heavy intellectual work. The Executor executes.
 
 ## Alternative Configurations
 
@@ -34,8 +35,9 @@ For sensitive/private content that should not leave the machine:
 | Creator | `gemma4:e4b` (8K) or `qwen3.5:9b` (8K) |
 | Executor | `qwen3.5:9b` |
 | Reader | `qwen3.5:9b` |
+| Evolution Analyst | `qwen3.5:9b` |
 
-Note: 8K context limits mean long-form writing may need chunking.
+Note: 8K context limits mean long-form writing may need chunking. Evolution analysis may be less precise with local models.
 
 ## For International Users
 
