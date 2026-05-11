@@ -1,16 +1,12 @@
 ---
 name: writing-triadic
 description: >
-  Triadic collaborative writing framework with self-evolving memory engine. Creator mines intent
-  via progressive questioning, Executor produces ≥2 distinct drafts, Reader evaluates with weighted
-  scoring. After every session, the Evolution Engine distills learnings into a growing style profile
-  — user corrections are instantly memorized, patterns compound over time. The more you use it,
-  the smarter it gets.
+  Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A, Executor produces 2 distinct drafts, Reader scores with weighted 6-D review. Evolution Engine distills every session into a growing style memory — user corrections compound, banned phrases auto-avoid next time. 11 templates. The more you use it, the smarter it gets.
 ---
 
-# Writing Triadic v2.0 — 自我进化的三角色协作写作框架
+# Writing Triadic v2.1 — 自我进化的三角色协作写作框架
 
-> **核心升级 (v2.0):** 新增「自我进化引擎」——每次写作后自动提炼知识，用户指正即时记忆，风格档案越用越精准。用一次，聪明一次。
+> **核心升级 (v2.1):** 新增「自我进化引擎」——每次写作后自动提炼知识，用户指正即时记忆，风格档案越用越精准。用一次，聪明一次。
 
 ## Overview
 
@@ -20,7 +16,7 @@ description: >
 | **Executor** | 执行者 / 精密写手 | Sub-agent A | 按需求+模板产出 ≥2 版有本质差异的初稿 |
 | **Reader** | 读者 / 灵魂受众 | Sub-agent B | 代入目标读者身份，加权评分，选出最佳版本 |
 
-**核心洞察**：写作不是一次 AI 生成任务。它需要深度理解用户意图（创作者）、精准执行（执行者）、真实读者反馈（读者）。v2.0 让这三个角色产出的所有经验，都沉淀为一个**持续生长的风格大脑**。
+**核心洞察**：写作不是一次 AI 生成任务。它需要深度理解用户意图（创作者）、精准执行（执行者）、真实读者反馈（读者）。v2.1 让这三个角色产出的所有经验，都沉淀为一个**持续生长的风格大脑**。
 
 ## Trigger Conditions
 
@@ -53,7 +49,7 @@ flowchart TB
     EV --> K: 更新知识库
 ```
 
-**State Machine (v2.0):**
+**State Machine (v2.1):**
 
 ```mermaid
 stateDiagram-v2
@@ -503,7 +499,7 @@ sessions_spawn:
 
 ## 🧠 Phase 5.5: 进化引擎 (Creator — 自动执行)
 
-**这是 v2.0 的核心新增模块。** 每次写作会话结束后（用户确认满意 / 表示结束 / 不再修改），Creator 自动触发进化分析，无需用户操作。
+**这是 v2.1 的核心新增模块。** 每次写作会话结束后（用户确认满意 / 表示结束 / 不再修改），Creator 自动触发进化分析，无需用户操作。
 
 ### 进化分析流程
 
@@ -613,9 +609,9 @@ See [references/model-config.md](references/model-config.md) for alternative con
 
 ## File References
 
-- **[creator-prompt.md](references/creator-prompt.md)** — 创作者完整协议（角色设定、递进逻辑、模板匹配、输出格式、v2.0 增加了历史偏好感知）
+- **[creator-prompt.md](references/creator-prompt.md)** — 创作者完整协议（角色设定、递进逻辑、模板匹配、输出格式、v2.1 增加了历史偏好感知）
 - **[executor-prompt.md](references/executor-prompt.md)** — 执行者完整系统提示词模板（角色约束、差异化策略、禁止清单、输出格式）
-- **[reader-prompt.md](references/reader-prompt.md)** — 读者完整系统提示词模板（身份代入、加权六维评分、高压红线扣分、结构化输出、v2.0 增加了历史禁忌感知）
+- **[reader-prompt.md](references/reader-prompt.md)** — 读者完整系统提示词模板（身份代入、加权六维评分、高压红线扣分、结构化输出、v2.1 增加了历史禁忌感知）
 - **[evolution-analyst-prompt.md](references/evolution-analyst-prompt.md)** — 🆕 进化分析师协议（偏好判断、纠错提炼、情境标注、冲突解决）
 - **[template-library.md](references/template-library.md)** — 多场景写作模板库（扩展至 10+ 模板）
 - **[ai-traces-guide.md](references/ai-traces-guide.md)** — AI 痕迹高频特征避坑指南（词汇/结构/内容三分类）

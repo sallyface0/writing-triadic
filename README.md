@@ -135,6 +135,10 @@ writing-triadic/
 - OpenAI: `openai/gpt-5` + `openai/gpt-5-mini`
 - Anthropic: `anthropic/claude-sonnet-4-20250514` + `anthropic/claude-haiku-4-5-20251001`
 
+## 📄 License
+
+[MIT-0](LICENSE) — Free to use, modify, and redistribute. No attribution required.
+
 ## 📝 更新日志
 
 详见 [CHANGELOG.md](CHANGELOG.md)

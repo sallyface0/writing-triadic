@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v2.1.1 (2026-05-11)
+
+### 🔧 文档与元数据修正
+
+- 修正 SKILL.md 中多处版本号 `v2.0` → `v2.1`（内容已是 v2.1，版本号未同步）
+- 优化 ClawHub package description，压缩摘要长度使其在搜索结果中完整展示
+- README.md 补充 License 声明（MIT-0）
+
+### 📄 License
+
+- 新增 MIT-0 LICENSE 文件，与 ClawHub 保持一致
+
+---
+
 ## v2.1.0 (2026-05-10)
 
 ### 🧬 核心新增：自我进化引擎
