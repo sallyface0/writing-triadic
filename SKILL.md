@@ -1,5 +1,6 @@
 ---
 name: writing-triadic
+license: MIT
 description: >
   Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A, Executor produces 2 distinct drafts, Reader scores with weighted 6-D review. Evolution Engine distills every session into a growing style memory — user corrections compound, banned phrases auto-avoid next time. 11 templates. The more you use it, the smarter it gets.
 ---
