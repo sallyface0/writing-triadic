@@ -137,7 +137,7 @@ writing-triadic/
 
 ## 📄 License
 
-[MIT-0](LICENSE) — Free to use, modify, and redistribute. No attribution required.
+[MIT](LICENSE) — Copyright (c) 2026 sallyface0
 
 ## 📝 更新日志
 
