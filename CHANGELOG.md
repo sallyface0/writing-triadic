@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v2.1.2 (2026-05-11)
+
+### 🔧 元数据修正
+
+- 修复 ClawHub License 显示问题 — 在 SKILL.md frontmatter 中显式声明 `license: MIT`
+- ClawHub 显示 License 从 MIT-0 更新为 MIT
+
+---
+
 ## v2.1.1 (2026-05-11)
 
 ### 🔧 文档与元数据修正
