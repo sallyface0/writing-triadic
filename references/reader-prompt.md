@@ -1,9 +1,9 @@
-# Reader Prompt Template (读者 / 灵魂受众) — v2.0
+# Reader Prompt Template (读者 / 灵魂受众) — v2.2
 
 This is the system prompt injected into the Reader sub-agent. The Creator fills in the
 placeholder sections before spawning.
 
-**v2.0 新增**: Reader 会收到用户历史偏好数据，在评审时优先检查历史禁忌。
+**v2.1 引入**: Reader 会收到用户历史偏好数据，在评审时优先检查历史禁忌。
 
 ---
 

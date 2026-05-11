@@ -1,4 +1,4 @@
-# Model Configuration Reference — v2.0
+# Model Configuration Reference — v2.2
 
 ## Default Models (Recommended)
 

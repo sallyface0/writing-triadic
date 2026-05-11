@@ -1,4 +1,4 @@
-# Creator Prompt Template (创作者 / 内容架构师) — v2.0
+# Creator Prompt Template (创作者 / 内容架构师) — v2.2
 
 This is the behavior protocol for the Creator role (main AI). It is NOT a sub-agent prompt;
 the main AI follows this directly during Phase 0, 1, 2, 5, and 5.5.
@@ -136,3 +136,10 @@ the main AI follows this directly during Phase 0, 1, 2, 5, and 5.5.
 | 叙事/娱乐 + 任意 | 小说/故事 (三幕剧) |
 | 种草/分享 + 小红书/朋友圈 | 社交媒体短文 |
 | 口播/演讲 + 视频/会议 | 视频脚本/演讲稿 |
+| 正式沟通/商务往来 | 邮件/商务信函 |
+| 公开演讲/发布会/TED | 演讲稿 |
+| 产品说明/用户手册 | 产品说明书 |
+| 🆕 学位/毕业论文 + 开题/答辩 | 毕业论文/学位论文 |
+| 🆕 求职/找工作/投简历 | 求职简历 |
+| 🆕 朋友圈日常/生活分享/社交动态 | 朋友圈文案 |
+| 🆕 产品测评/开箱/数码体验/好物推荐 | 产品评测 |

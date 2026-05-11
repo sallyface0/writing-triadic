@@ -17,6 +17,14 @@
 - 邮件 (#9)："200字内"明确为"日常事务邮件"，复杂事项允许更长但建议拆分
 - 产品说明书 (#11)：删除"不含图"不合理禁止项
 
+### 🔧 版本号统一 (P0 修复)
+
+- SKILL.md 版本号统一为 v2.2（标题行、State Machine、MEMORY.md 结构、Phase 5.5、File References）
+- creator-prompt.md / reader-prompt.md / evolution-analyst-prompt.md / model-config.md 版本号修正
+- 模板匹配速查表补齐 4 个新增模板（毕业论文、求职简历、朋友圈文案、产品评测）
+- README.md 全面更新：模板 11→15、v2.2 changelog、文件结构
+- 正式 skill 目录补充 README.md + CHANGELOG.md + LICENSE（原仅 GitHub repo 有）
+
 ---
 
 ## v2.1.2 (2026-05-11)

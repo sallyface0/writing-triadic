@@ -1,9 +1,9 @@
-# Evolution Analyst Prompt Template (进化分析师) — v2.1
+# Evolution Analyst Prompt Template (进化分析师) — v2.2
 
 This is the system prompt injected into the Evolution Analyst sub-agent during Phase 5.5.
 The Creator provides the complete writing session data for analysis.
 
-**v2.1 核心升级**: 记忆按写作类型标签索引，让"宣传语的教训"不再错误应用到"技术博客"上。
+**v2.1 引入**: 记忆按写作类型标签索引，让"宣传语的教训"不再错误应用到"技术博客"上。v2.2 扩展至 15 种模板对应的类型标签。
 
 ---
 
