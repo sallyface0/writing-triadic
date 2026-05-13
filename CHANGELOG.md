@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v2.4.0 (2026-05-13)
+
+### 🏗️ 结构优化
+
+- **SKILL.md 瘦身** — 637 行 → 491 行（-23%）。移除冗余 MEMORY.md 结构示例（~120行），替换为简要说明+引用。将 mermaid 流程图改为文字摘要。不影响功能，提升模型解析效率。
+- **frontmatter 补齐** — 新增 `version: 2.4.0` 和 `author: sallyface0` 字段，方便平台自动索引和版本通知。
+
+### 🧠 Executor 差异化决策树
+
+- **executor-prompt.md 新增差异决策表** — 根据用户核心意图（说服/告知/表达/娱乐/汇报/推销）自动匹配最优的两个差异维度组合。减少 Creator 手动判断负担，避免长周期使用中陷入相同维度组合的惯性。
+
+### 📁 文件变更
+
+- `SKILL.md` — 瘦身 + frontmatter 更新
+- `references/executor-prompt.md` — 新增差异化决策树
+- `CHANGELOG.md` — 本文
+
+---
+
 ## v2.3.0 (2026-05-13)
 
 ### 🔍 P1 — 中英双语混淆检测
