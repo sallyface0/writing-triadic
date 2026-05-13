@@ -5,9 +5,9 @@ description: >
   Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A, Executor produces 2 distinct drafts, Reader scores with weighted 6-D review. Evolution Engine distills every session into a growing style memory — user corrections compound, banned phrases auto-avoid next time. 15 templates. The more you use it, the smarter it gets.
 ---
 
-# Writing Triadic v2.2 — 自我进化的三角色协作写作框架
+# Writing Triadic v2.3 — 自我进化的三角色协作写作框架
 
-> **v2.2 升级:** 模板库扩展至 15 种（新增毕业论文、求职简历、朋友圈文案、产品评测），既有模板审核修正，更全面的写作类型覆盖。
+> **v2.3 升级:** 中英双语混淆检测、端到端写作示例 (examples.md)、英文版 README (README_EN.md)。v2.2 的 15 种模板全部保留。
 
 ## Overview
 
@@ -587,11 +587,15 @@ See [references/ai-traces-guide.md](references/ai-traces-guide.md) for the compr
 1. 词汇与短语警戒线（中英文高危词表）
 2. 结构性 AI 模式（对仗强迫症、结尾升华综合征等）
 3. 内容空洞信号（端水大师、时间遁词等）
+4. 🆕 **中英双语混淆检测**（英文思维写中文 + 中文思维硬译英文 + 回译测试法）
 
 **快速自查三问** (所有人每次输出前自问)：
 1. 这句话真人聊天时说得出口吗？
 2. 这段文字增加了信息还是仅仅在重复？
 3. 读者会跳过这一段吗？
+
+🆕 **双语自查** (中英混排时追加)：
+4. 回译测试：这句中文译回英文后通顺自然吗？（如果通顺 → AI 味浓）
 
 ---
 
@@ -615,7 +619,8 @@ See [references/model-config.md](references/model-config.md) for alternative con
 - **[reader-prompt.md](references/reader-prompt.md)** — 读者完整系统提示词模板（身份代入、加权六维评分、高压红线扣分、结构化输出、v2.2 增加了历史禁忌感知）
 - **[evolution-analyst-prompt.md](references/evolution-analyst-prompt.md)** — 🆕 进化分析师协议（偏好判断、纠错提炼、情境标注、冲突解决）
 - **[template-library.md](references/template-library.md)** — 多场景写作模板库（15 种模板，覆盖学术/商业/社交/评测全场景）
-- **[ai-traces-guide.md](references/ai-traces-guide.md)** — AI 痕迹高频特征避坑指南（词汇/结构/内容三分类）
+- **[ai-traces-guide.md](references/ai-traces-guide.md)** — AI 痕迹高频特征避坑指南（词汇/结构/内容/🆕中英双语混淆四分类，含回译测试法）
+- **[examples.md](references/examples.md)** — 🆕 端到端写作示例（博客文章/朋友圈文案/求职简历三种场景，展示完整 Phase 0-5.5 流程）
 - **[model-config.md](references/model-config.md)** — 模型配置方案与切换指南
 
 ## File Management

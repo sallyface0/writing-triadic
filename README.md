@@ -1,7 +1,7 @@
 # Writing Triadic — 自我进化的三角色协作写作 Skill
 
 > 写作不是一次 AI 生成任务。它需要**深度理解意图**、**精准执行**、**真实读者反馈**。
-> v2.2 扩展至 15 种写作模板，覆盖从学位论文到朋友圈的全场景。越用越懂你，每次写作都在变聪明。
+> v2.3 新增中英双语混淆检测、端到端写作示例、英文版 README。越用越懂你，每次写作都在变聪明。
 
 ## ✨ 核心理念
 
@@ -14,7 +14,14 @@
 | 👁️ **Reader** | 读者 / 灵魂受众 | 代入目标读者身份，加权六维评分，选出最佳版本 |
 | 🧬 **Evolution Analyst** | 进化分析师 | 每次写作后自动提炼偏好，按写作类型标签归档 |
 
-## 🆕 v2.2 升级
+## 🆕 v2.3 升级 (2026-05-13)
+
+### 三项 P1 强化
+- 🌐 **中英双语混淆检测** — `ai-traces-guide.md` 新增第 4 节：英文思维写中文检测（被动语态/It is 直译/连接词首句）+ 中文思维硬译英文检测（With the development of.../plays an important role）+ 回译测试法
+- 📖 **端到端写作示例** — 新增 `references/examples.md`：博客文章、朋友圈文案、求职简历三种场景的完整 Phase 0-5.5 实战展示
+- 🌍 **英文版 README** — 新增 `README_EN.md`，面向国际用户
+
+## v2.2 升级 (回顾)
 
 ### 模板库 11 → 15 种
 
@@ -93,7 +100,7 @@ Phase 5: 呈现给你 → 你的指正即时记忆
 Phase 5.5: 进化分析师自动提炼 → 更新风格档案 🧬
 ```
 
-## 📚 支持的写作类型 (v2.2 — 15 种)
+## 📚 支持的写作类型 (v2.3 — 15 种)
 
 | 场景 | 模板 |
 |---|---|
@@ -119,6 +126,7 @@ Phase 5.5: 进化分析师自动提炼 → 更新风格档案 🧬
 - **词汇警戒线**：40+ 中英文高危 AI 词汇
 - **结构性模式**：对仗强迫症、结尾升华综合征、破折号滥用
 - **内容空洞信号**：端水大师、时间遁词、模糊归因
+- 🆕 **中英双语混淆**：英文思维写中文检测 + 中文思维硬译英文检测 + 回译测试法
 - **历史禁忌检查**：Reader 评审时优先检查用户历史偏好，触犯额外扣分
 
 ## 🔧 模型配置
@@ -136,17 +144,19 @@ Phase 5.5: 进化分析师自动提炼 → 更新风格档案 🧬
 
 ```
 writing-triadic/
-├── SKILL.md                         # 主文件 (v2.2)
+├── SKILL.md                         # 主文件 (v2.3)
 ├── README.md                        # 本文件
 ├── CHANGELOG.md                     # 更新日志
 ├── LICENSE                          # MIT License
+├── README_EN.md                     # 🆕 English README
 └── references/
     ├── creator-prompt.md            # 创作者协议 (含历史偏好感知)
     ├── executor-prompt.md           # 执行者 system prompt
     ├── reader-prompt.md             # 读者 system prompt (含历史禁忌检查)
     ├── evolution-analyst-prompt.md  # 进化分析师协议
     ├── template-library.md          # 15 种写作模板
-    ├── ai-traces-guide.md           # AI 痕迹避坑指南
+    ├── ai-traces-guide.md           # 🆕 AI 痕迹避坑指南 (v2.3: 含中英双语混淆检测)
+    ├── examples.md                  # 🆕 端到端写作示例
     └── model-config.md              # 模型配置方案
 ```
 

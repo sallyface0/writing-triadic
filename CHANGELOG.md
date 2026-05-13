@@ -1,5 +1,47 @@
 # CHANGELOG
 
+## v2.3.0 (2026-05-13)
+
+### 🔍 P1 — 中英双语混淆检测
+
+- **ai-traces-guide.md 大幅扩展** — 新增第 4 节「中英双语混淆检测」
+  - 4.1 英文思维写中文检测：被动语态泛滥、It is + adj + that 直译、连接词首句、"对……进行……"万能句式等 8 种模式
+  - 4.2 中文思维硬译英文检测：With the development of...、plays an important role、not only... but also 等 8 种 Chinglish 模式
+  - 4.3 双语混淆评分表：Reader 评审时额外检查，每处 -3 分
+  - 回译测试法：中文译回英文，如果英文通顺自然 → 中文八成是 AI 味
+- 更新快速自查清单：新增 5 项双语检查
+- 新增英文区对比示例（AI Chinglish vs. Native English）
+
+### 📖 P1 — 端到端写作示例 (examples.md)
+
+- 新增 `references/examples.md` — 三个完整实战示例：
+  1. **博客文章** — "如何用好 AI 编程助手"，展示完整 Phase 0-5.5，含真实 Creator 提问、Executor 双版本产出、Reader 评分表、Evolution Analyst 输出
+  2. **朋友圈文案** — 项目完成后的社交分享，展示首次使用的写作类型自动初始化流程
+  3. **求职简历优化** — 从"负责XXX"流水账改造为 STAR 句式，含改写前后对比
+- 附设计原则总结
+
+### 🌍 P1 — 英文版 README (README_EN.md)
+
+- 新增 `README_EN.md` — 完整英文版介绍
+- 包含：核心理念、15 种模板一览、双语混淆检测亮点、快速开始、模型配置
+- 与国际用户（OpenAI/Anthropic 模型用户）的切换指南
+
+### 🔧 配套更新
+
+- SKILL.md：版本号 v2.2 → v2.3、标题与导语更新、AI 痕迹章节引用更新（增加双语混淆+回译测试）、File References 补齐 examples.md
+- README.md：版本号同步 v2.3、新增 v2.3 changelog 章节、文件结构更新、AI 检测亮点更新
+
+### 📁 文件变更
+
+- `SKILL.md` — 版本号与引用更新
+- `README.md` — v2.3 changelog + 文件结构 + AI 亮点更新
+- `CHANGELOG.md` — 本文
+- `README_EN.md` — 🆕 新增
+- `references/ai-traces-guide.md` — 重写（新增第 4 节 + 双语检测体系）
+- `references/examples.md` — 🆕 新增
+
+---
+
 ## v2.2.0 (2026-05-11)
 
 ### 📝 模板库重大升级：11 种 → 15 种
