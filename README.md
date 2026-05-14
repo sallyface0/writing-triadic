@@ -1,7 +1,7 @@
 # Writing Triadic — 自我进化的三角色协作写作 Skill
 
 > 写作不是一次 AI 生成任务。它需要**深度理解意图**、**精准执行**、**真实读者反馈**。
-> v2.4 结构优化：SKILL.md 瘦身、frontmatter 补齐、Executor 差异化决策树。越用越懂你。
+> v2.5 智能配方匹配 + 进化引擎 v2：跨模板融合、偏好漂移、否决权。越用越懂你。
 
 ## ✨ 核心理念
 
@@ -9,12 +9,29 @@
 
 | 角色 | 中文名 | 职责 |
 |---|---|---|
-| 🧠 **Creator** | 创作者 / 内容架构师 | 深层挖掘用户意图（4问/轮），自动匹配最佳写作模板，驱动进化引擎 |
-| ✍️ **Executor** | 执行者 / 精密写手 | 按规则产出 ≥2 版有本质差异的初稿 |
+| 🧠 **Creator** | 创作者 / 内容架构师 | 深层挖掘用户意图（4问/轮），智能配方匹配（跨模板融合），驱动进化引擎 |
+| ✍️ **Executor** | 执行者 / 精密写手 | 按规则+配方产出 ≥2 版有本质差异的初稿 |
 | 👁️ **Reader** | 读者 / 灵魂受众 | 代入目标读者身份，加权六维评分，选出最佳版本 |
-| 🧬 **Evolution Analyst** | 进化分析师 | 每次写作后自动提炼偏好，按写作类型标签归档 |
+| 🧬 **Evolution Analyst** | 进化分析师 v2 | 每次写作后自动提炼偏好 + 全局统计分析（漂移/否决权/采纳率） |
 
-## 🆕 v2.4 升级 (2026-05-13)
+## 🆕 v2.5 升级 (2026-05-14)
+
+### 智能配方匹配 v2
+- **三层渐进机制** — 🔴推荐+确认 → 🟡默认+可改 → 🟢沿用+免问
+- **跨模板融合** — 支持如 `技术博客:70% + 产品评测:30%` 的混合配方
+- **6 个预设融合配方 + 自定义配方协议**
+- **风险兜底** — 用户随时可"别配方了"降级回传统模式
+
+### Evolution Engine v2
+- **偏好漂移检测** — 自动追踪同一维度在时间轴上的变化趋势
+- **否决权机制** — 连续低分维度自动标记/黑名单
+- **采纳率 + 词汇热力图** — 跨写作类型的全局数据画像
+
+### 🔮 Roadmap
+- **v2.6.0**: Executor 多模态迭代 — 差异式修改 + v1+v2 合成 v3
+- **v2.7.0**: 即兴写作模式 — 2 问直出，进化记录照写
+
+## v2.4 升级 (回顾)
 
 ### 结构优化
 - **SKILL.md 瘦身** — 637 行 → 491 行（-23%），移除冗余内容，不影响功能
@@ -96,6 +113,8 @@ Phase 0: 读取你的风格进化档案（知道你讨厌什么、喜欢什么�
     ↓
 Phase 1: 创作者挖掘意图（最多4问/轮，基于历史偏好精问）
     ↓
+Phase 1 增强: 🆕 智能配方推荐（跨模板融合方案）
+    ↓
 Phase 1.5: 自动联网调研 + 更新知识库
     ↓
 Phase 2: 匹配模板（15选1）→ 制定规则（含历史偏好注入）
@@ -106,7 +125,9 @@ Phase 4: 读者以人类视角评审 → 选出最佳
     ↓
 Phase 5: 呈现给你 → 你的指正即时记忆
     ↓
-Phase 5.5: 进化分析师自动提炼 → 更新风格档案 🧬
+Phase 5.5: 进化分析师 v2 自动提炼 + 全局统计 🧬
+    ↓
+    💡 偏好漂移检测 + 否决权审查 
 ```
 
 ## 📚 支持的写作类型 (v2.3 — 15 种)
@@ -140,12 +161,12 @@ Phase 5.5: 进化分析师自动提炼 → 更新风格档案 🧬
 
 ## 🔧 模型配置
 
-| 角色 | 默认模型 | 说明 |
+| Role | Default Model | Rationale |
 |---|---|---|
-| Creator | `deepseek/deepseek-v4-pro` | 深度推理 |
-| Executor | `deepseek/deepseek-v4-flash` | 快速生成 |
-| Reader | `deepseek/deepseek-v4-pro` | 批判评审 |
-| Evolution Analyst | `deepseek/deepseek-v4-pro` | 偏好判断 |
+| Creator | `deepseek/deepseek-v4-pro` | 深度推理 + 配方匹配 |
+| Executor | `deepseek/deepseek-v4-flash` | 快速生成多版初稿 |
+| Reader | `deepseek/deepseek-v4-pro` | 批判性评审 |
+| Evolution Analyst v2 | `deepseek/deepseek-v4-pro` | 偏好判断 + 全局统计 |
 
 支持自定义：全 Pro 模式、全 Flash 模式、Ollama 本地隐私模式。
 
@@ -153,19 +174,20 @@ Phase 5.5: 进化分析师自动提炼 → 更新风格档案 🧬
 
 ```
 writing-triadic/
-├── SKILL.md                         # 主文件 (v2.4)
+├── SKILL.md                         # 主文件 (v2.5)
 ├── README.md                        # 本文件
 ├── CHANGELOG.md                     # 更新日志
 ├── LICENSE                          # MIT License
-├── README_EN.md                     # 🆕 English README
+├── README_EN.md                     # English README
+├── skills-spring-roadmap.md         # 版本路线图
 └── references/
-    ├── creator-prompt.md            # 创作者协议 (含历史偏好感知)
-    ├── executor-prompt.md           # 执行者 system prompt
+    ├── creator-prompt.md            # 创作者协议 (含历史偏好感知 + 配方推荐)
+    ├── executor-prompt.md           # 执行者 system prompt (含差异化决策树)
     ├── reader-prompt.md             # 读者 system prompt (含历史禁忌检查)
-    ├── evolution-analyst-prompt.md  # 进化分析师协议
-    ├── template-library.md          # 15 种写作模板
-    ├── ai-traces-guide.md           # 🆕 AI 痕迹避坑指南 (v2.3: 含中英双语混淆检测)
-    ├── examples.md                  # 🆕 端到端写作示例
+    ├── evolution-analyst-prompt.md  # 🆕 进化分析师 v2 协议 (含配方追踪 + 全局统计)
+    ├── template-library.md          # 🆕 15 种模板 + 跨模板融合指南
+    ├── ai-traces-guide.md           # AI 痕迹避坑指南 (含中英双语混淆检测)
+    ├── examples.md                  # 端到端写作示例
     └── model-config.md              # 模型配置方案
 ```
 

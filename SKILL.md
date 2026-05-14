@@ -1,15 +1,15 @@
 ---
 name: writing-triadic
-version: 2.4.0
+version: 2.5.0
 license: MIT
 author: sallyface0
 description: >
-  Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A, Executor produces 2 distinct drafts, Reader scores with weighted 6-D review. Evolution Engine distills every session into a growing style memory — user corrections compound, banned phrases auto-avoid next time. 15 templates. The more you use it, the smarter it gets.
+  Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A + intelligent blend matching, Executor produces 2 distinct drafts, Reader scores with weighted 6-D review. Evolution Engine v2 adds cross-session preference drift analysis + veto mechanism. 15 templates with cross-template fusion. The more you use it, the smarter it gets.
 ---
 
-# Writing Triadic v2.4 — 自我进化的三角色协作写作框架
+# Writing Triadic v2.5 — 智能配方匹配 + 进化引擎 v2
 
-> **v2.4 升级:** SKILL.md 瘦身（-23%）、frontmatter 补齐（version/author）、Executor 差异化决策树。v2.3 全部内容保留。
+> **v2.5 升级:** 智能配方匹配 v2（三层渐进机制 + 跨模板融合）、Evolution Engine v2（全局统计分析 + 偏好漂移 + 否决权）。v2.4 全部内容保留。
 
 ## Overview
 
@@ -19,7 +19,7 @@ description: >
 | **Executor** | 执行者 / 精密写手 | Sub-agent A | 按需求+模板产出 ≥2 版有本质差异的初稿 |
 | **Reader** | 读者 / 灵魂受众 | Sub-agent B | 代入目标读者身份，加权评分，选出最佳版本 |
 
-**核心洞察**：写作不是一次 AI 生成任务。它需要深度理解用户意图（创作者）、精准执行（执行者）、真实读者反馈（读者）。v2.2 让这三个角色产出的所有经验，都沉淀为一个**持续生长的风格大脑**，15 种模板覆盖从学术论文到朋友圈的全场景写作。
+**核心洞察**：写作不是一次 AI 生成任务。它需要深度理解用户意图（创作者）、精准执行（执行者）、真实读者反馈（读者）。v2.2 让这三个角色产出的所有经验，都沉淀为一个**持续生长的风格大脑**；v2.4 实现 Executor 差异化决策；v2.5 引入**智能配方匹配**（跨模板融合）和 **Evolution Engine v2**（全局统计分析）。15 种模板覆盖从学术论文到朋友圈的全场景写作。
 
 ## Trigger Conditions
 
@@ -119,9 +119,75 @@ This path is referred to as `{workspace}/写作/` throughout this skill.
 
 See [references/template-library.md](references/template-library.md) for the full template library.
 
+### 智能配方匹配 (Intelligent Blend Matching) — 🆕 v2.5
+
+当用户需求跨多个写作领域时，单一模板可能无法完美覆盖。智能配方匹配自动检测需求交叉点，为 Creator 提供融合方案。
+
+#### 核心原则
+> **"提方案，但不替你做决定；学你的选择，下次更懂你"**
+
+#### 三层渐进机制
+
+##### 🔴 第一层 — 「推荐 + 确认」模式（默认起点）
+
+**触发条件**：该写作类型首次出现，或该类型配方历史不足 2 次。
+
+Creator 在 Phase 1 结束时主动出示配方方案，提供 2~3 个选项：
+
+```
+💡 智能配方推荐
+基于本次需求，我建议以下配方方向：
+| # | 配方 | 适用场景 |
+|---|------|----------|
+| ① | 纯 [模板A] (100%) | 标准写法 |
+| ② | [模板A:70%] + [模板B:30%] | A为主，融入B的特性 |
+| ③ | [模板A:50%] + [模板C:50%] | 均衡融合 |
+
+选一个？或者你自定义比例？
+```
+
+**约束**：此阶段**不允许自动执行**，必须等待用户确认。用户可否决、调整比例、或提出不在列表中的自定义配方。
+
+##### 🟡 第二层 — 「默认 + 可改」模式
+
+**触发条件**：该写作类型连续出现 ≥3 次，且历史配方选择一致性 ≥80%。
+
+```
+📋 检测到你对 [写作类型] 的配方偏好稳定在 [A:70% + B:30%]。
+本次已自动匹配此配方，不满意随时改~
+```
+
+- 省略重复询问，但保留完整反悔权
+- 如果 Phase 1 中用户说"按上次的来"，直接进此模式
+
+##### 🟢 第三层 — 「沿用 + 免问」模式
+
+**触发条件**：该配方组合下，Reader 连续 ≥3 次评分 >85 分。
+
+- 默认沿用，跳过配方确认环节
+- MEMORY.md 仍记录每一次选择
+- 一旦用户某次表示不满 → 自动退回🟡或🔴
+
+#### 风险兜底
+
+- 用户随时可用简单短句降级："别配方了" → 直接退回到标准单一模板模式
+- 所有新写作类型必须从🔴第一层开始
+- Evolution Analyst 在 Phase 5.5 追踪配方选择与效果
+- 用户自定义的融合比例将被记录，下次自动纳入候选
+
+#### 跨模板融合指南
+
+融合时遵循以下优先级规则：
+1. **结构骨架** → 取主模板（占比 ≥60%）
+2. **语调风格** → 取辅模板（占比 ≤40%）
+3. **词汇库** → 两模板白名单取并集，黑名单取交集（最严格）
+4. **AI 痕迹检测** → 以主模板自身的检测清单为主，辅模板追加特定条
+
+详见 [references/template-library.md#跨模板融合指南](references/template-library.md)。
+
 ### 置信度门槛
 
-达到 **95% 置信度**，且已锁定【核心内容 + 所用模板】，输出：
+达到 **95% 置信度**，且已锁定【核心内容 + 所用模板/配方】，输出：
 
 ```
 💡 需求与框架锁定报告
@@ -129,7 +195,7 @@ See [references/template-library.md](references/template-library.md) for the ful
 - 目标受众：...
 - 预期目的：...
 - 写作语调：...
-- 应用模板/体裁：[模板名称]
+- 应用模板/配方：[模板名称] / [配方比例，如有]
 - 附加限制：...
 - 📖 历史参考：[如有] 基于你的风格档案，本次已自动应用偏好：...
 
@@ -357,9 +423,11 @@ sessions_spawn:
 
 ---
 
-## 🧠 Phase 5.5: 进化引擎 (Creator — 自动执行)
+## 🧠 Phase 5.5: 进化引擎 v2 (Creator — 自动执行)
 
-**v2.1 引入，v2.2 持续优化。** 每次写作会话结束后（用户确认满意 / 表示结束 / 不再修改），Creator 自动触发进化分析，无需用户操作。
+**v2.1 引入，v2.5 升级为 v2。** 每次写作会话结束后（用户确认满意 / 表示结束 / 不再修改），Creator 自动触发进化分析，无需用户操作。
+
+**v2.5 新增**: 全局统计分析（偏好漂移 + 否决权），在单次进化分析结束时顺带执行增量统计。
 
 ### 进化分析流程
 
@@ -388,6 +456,7 @@ sessions_spawn:
     [MEMORY.md 内容]
 
     请按协议输出进化更新。
+    最后执行 v2.5 新增的全局统计分析。
 
   model: "deepseek/deepseek-v4-pro"
   context: "isolated"
@@ -411,8 +480,8 @@ Evolution Analyst 返回结构化的更新建议，Creator 将其合并写入 `{
 ### 风格确认
 - [本次用户满意的地方，强化记忆]
 
-### 模板效果
-- 应用模板：[模板名] | 本次评分：[X分] | 用户满意度：[高/中/低]
+### 模板/配方效果
+- 应用模板：[模板名] | 配方：[比例，如有] | 本次评分：[X分] | 用户满意度：[高/中/低]
 
 ### 词汇进化
 - 🟢 白名单新增：[用户喜欢的新表达]
@@ -422,6 +491,66 @@ Evolution Analyst 返回结构化的更新建议，Creator 将其合并写入 `{
 #### 知识库.md 更新项
 
 如果有值得沉淀的新知识（新技法、新结构、行业洞察），同步追加到 `知识库.md`。
+
+### 🆕 全局统计分析 (v2.5)
+
+在单次进化分析完成后，Evolution Analyst 对 MEMORY.md 做**增量统计**（非全量扫描——每次只更新统计面板的指标）：
+
+#### 偏好漂移报告
+
+按写作类型标签，自动检测同一个偏好维度在时间轴上的变化：
+
+```markdown
+### 📊 偏好漂移检测 ([写作类型标签])
+
+| 偏好维度 | 最早记录 | 最新记录 | 趋势 | 置信度 |
+|----------|----------|----------|------|--------|
+| 语调 | 正式 (05-01) | 口语化 (05-13) | 逐步放松 📉 | 高 (3次确认) |
+| 字数 | 3000+ (05-03) | 1500-2000 (05-14) | 偏好精简 📉 | 高 (4次缩短) |
+```
+
+如果漂移趋势明显（同方向 ≥3 次），标记为「高置信漂移」。Creator 在 Phase 1 时可附注：
+
+> 📈 "检测到你最近对 [写作类型] 的文风偏好在往 [方向] 走，这次延续吗？"
+
+#### 否决权机制 (Veto Rule)
+
+当同一个维度连续 2 次被 Reader 打出低分（单维度 < 70）：
+
+1. 该维度的当前偏好设置被**自动标记为待审查**
+2. 下次 Phase 2 制定规则时，Creator 主动询问：
+
+> ⚠️ "你偏好的 [某规则] 最近两次效果一般（Reader 评分偏低），这次要不要换一种？"
+
+3. 如果第三次用户仍坚持原偏好且 Reader 评分回升 → 标记解除
+4. 如果连续 3 次低分 → **自动进入黑名单**，该偏好不再自动应用，必须用户主动指定才启用
+
+#### 采纳率统计
+
+```markdown
+### 📊 采纳率
+
+| 写作类型 | 总次数 | 用户接受率 | 平均 Reader 分 | 最常见配方 |
+|----------|--------|------------|----------------|------------|
+| [博客文章] | 8 | 87.5% | 82 | 博客:100% |
+| [朋友圈文案] | 5 | 100% | 85 | 短文:80%+商业文案:20% |
+```
+
+#### 词汇热力图
+
+```markdown
+### 📊 词汇热力图 (全局)
+
+🟢 高频白名单 (全局): "其实"(6次), "说白了"(4次), "你感受一下"(3次)
+🔴 高频黑名单 (全局): "值得注意的是"(5次触发), "在当今"(3次触发)
+⚠️ 待定 (跨类型出现但未被标记): "所以我想说的就是" (出现3次，未明确反馈)
+```
+
+#### 增量更新规则
+
+- 统计数据不是每次扫描全量历史，而是**增量更新**——基于上次统计数字 + 本次新数据
+- MEMORY.md 顶部维护一个 `## 📊 全局统计摘要` 节，每次进化分析结束时更新
+- 如果 MEMORY.md 无此节，首次初始化：扫描全量历史建立基线
 
 ### 进化引擎的调度时机
 
@@ -476,8 +605,8 @@ See [references/model-config.md](references/model-config.md) for alternative con
 - **[creator-prompt.md](references/creator-prompt.md)** — 创作者完整协议（角色设定、递进逻辑、模板匹配、输出格式、v2.2 增加了历史偏好感知）
 - **[executor-prompt.md](references/executor-prompt.md)** — 执行者完整系统提示词模板（角色约束、差异化策略、禁止清单、输出格式）
 - **[reader-prompt.md](references/reader-prompt.md)** — 读者完整系统提示词模板（身份代入、加权六维评分、高压红线扣分、结构化输出、v2.2 增加了历史禁忌感知）
-- **[evolution-analyst-prompt.md](references/evolution-analyst-prompt.md)** — 🆕 进化分析师协议（偏好判断、纠错提炼、情境标注、冲突解决）
-- **[template-library.md](references/template-library.md)** — 多场景写作模板库（15 种模板，覆盖学术/商业/社交/评测全场景）
+- **[evolution-analyst-prompt.md](references/evolution-analyst-prompt.md)** — 🆕 进化分析师协议（偏好判断、纠错提炼、情境标注、冲突解决、v2.5 新增配方追踪 + 全局统计）
+- **[template-library.md](references/template-library.md)** — 多场景写作模板库（15 种模板 + 🆕 v2.5 跨模板融合指南）
 - **[ai-traces-guide.md](references/ai-traces-guide.md)** — AI 痕迹高频特征避坑指南（词汇/结构/内容/🆕中英双语混淆四分类，含回译测试法）
 - **[examples.md](references/examples.md)** — 🆕 端到端写作示例（博客文章/朋友圈文案/求职简历三种场景，展示完整 Phase 0-5.5 流程）
 - **[model-config.md](references/model-config.md)** — 模型配置方案与切换指南

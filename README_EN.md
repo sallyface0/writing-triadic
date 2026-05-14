@@ -1,7 +1,7 @@
 # Writing Triadic — Self-Evolving 3-Role Collaborative Writing Framework
 
 > Writing is not a one-shot AI generation task. It requires **deep intent understanding**, **precise execution**, and **authentic reader feedback**.  
-> v2.3 extends to 15 writing templates, covering everything from thesis to social posts. The more you use it, the smarter it gets.
+> v2.5 adds intelligent blend matching + Evolution Engine v2: cross-template fusion, preference drift, veto mechanism. The more you use it, the smarter it gets.
 
 ## ✨ Core Philosophy
 
@@ -9,12 +9,29 @@ Traditional AI writing is "you say something, it writes something." Writing Tria
 
 | Role | Name | Responsibility |
 |---|---|---|
-| 🧠 **Creator** | Content Architect | Deep intent mining (≤4 questions/round), auto template matching, drives evolution engine |
-| ✍️ **Executor** | Precision Writer | Produces ≥2 drafts with meaningful divergence based on rules + templates |
+| 🧠 **Creator** | Content Architect | Deep intent mining (≤4 questions/round), intelligent blend matching (cross-template fusion), drives evolution engine |
+| ✍️ **Executor** | Precision Writer | Produces ≥2 drafts with meaningful divergence based on rules + blend formula |
 | 👁️ **Reader** | Soul Audience | Inhabits the target reader's persona; weighted 6-dimension scoring; picks the best version |
-| 🧬 **Evolution Analyst** | Evolution Analyst | Auto-extracts preferences after each session, tagged by writing type |
+| 🧬 **Evolution Analyst** | Evolution Analyst v2 | Auto-extracts preferences after each session + global statistics (drift/veto/adoption rate) |
 
-## 🆕 v2.3 Highlights
+## 🆕 v2.5 Highlights (2026-05-14)
+
+### Intelligent Blend Matching v2
+- **Three-tier progression** — 🔴 Recommend+Confirm → 🟡 Default+Adjustable → 🟢 Auto-Apply
+- **Cross-template fusion** — e.g., `Tech Blog:70% + Product Review:30%`
+- **6 preset blends + custom blend protocol**
+- **Safety net** — user can say "no blends" anytime to fall back to classic mode
+
+### Evolution Engine v2
+- **Preference drift detection** — auto-tracks how preferences shift over time per writing type
+- **Veto mechanism** — consecutive low scores on a dimension → auto-flagged / blacklisted
+- **Adoption rate + vocabulary heatmap** — cross-type global data profile
+
+### 🔮 Roadmap
+- **v2.6.0**: Executor multi-modal iteration — differential edits, v1+v2 → v3 synthesis
+- **v2.7.0**: Quick-write mode — 2-question lightning round, evolution still logged
+
+## v2.3 Highlights (Retained)
 
 ### 15 Writing Templates (v2.2 + refined)
 
@@ -108,6 +125,8 @@ Phase 0: Read style evolution archive (knows what you hate & love)
     ↓
 Phase 1: Creator mines intent (≤4 questions/round, history-informed)
     ↓
+Phase 1 Enhanced: 🆕 intelligent blend recommendation (cross-template fusion)
+    ↓
 Phase 1.5: Auto web research + knowledge base update
     ↓
 Phase 2: Template matching (15 choose 1) → rules (with history injection)
@@ -118,7 +137,9 @@ Phase 4: Reader evaluates as human audience → picks best
     ↓
 Phase 5: Present to you → your corrections instantly memorized
     ↓
-Phase 5.5: Evolution Analyst auto-extracts → updates style archive 🧬
+Phase 5.5: Evolution Analyst v2 auto-extracts + global stats 🧬
+    ↓
+    💡 Preference drift detection + veto review
 ```
 
 ## 🛡️ AI Trace Detection
@@ -134,10 +155,10 @@ Built-in comprehensive AI trace avoidance guide covering:
 
 | Role | Default Model | Rationale |
 |---|---|---|
-| Creator | `deepseek/deepseek-v4-pro` | Deep reasoning for intent mining & QC |
-| Executor | `deepseek/deepseek-v4-flash` | Fast generation, multi-draft cost efficiency |
-| Reader | `deepseek/deepseek-v4-pro` | Critical evaluation needs reasoning |
-| Evolution Analyst | `deepseek/deepseek-v4-pro` | Preference vs one-off judgment |
+| Creator | `deepseek/deepseek-v4-pro` | Deep reasoning + blend matching |
+| Executor | `deepseek/deepseek-v4-flash` | Fast multi-draft generation |
+| Reader | `deepseek/deepseek-v4-pro` | Critical evaluation |
+| Evolution Analyst v2 | `deepseek/deepseek-v4-pro` | Preference judgment + global stats |
 
 Customizable: All-Pro mode, All-Flash mode, Ollama local privacy mode.
 
@@ -149,19 +170,20 @@ For non-DeepSeek users:
 
 ```
 writing-triadic/
-├── SKILL.md                         # Main file (v2.3)
+├── SKILL.md                         # Main file (v2.5)
 ├── README.md                        # Chinese README
 ├── README_EN.md                     # This file
 ├── CHANGELOG.md                     # Update log
 ├── LICENSE                          # MIT License
+├── skills-spring-roadmap.md         # Version roadmap
 └── references/
-    ├── creator-prompt.md            # Creator protocol (with history awareness)
-    ├── executor-prompt.md           # Executor system prompt
+    ├── creator-prompt.md            # Creator protocol (with history awareness + blend recommendation)
+    ├── executor-prompt.md           # Executor system prompt (with divergence decision tree)
     ├── reader-prompt.md             # Reader system prompt (with taboo check)
-    ├── evolution-analyst-prompt.md  # Evolution Analyst protocol
-    ├── template-library.md          # 15 writing templates
-    ├── ai-traces-guide.md           # AI trace avoidance guide (v2.3: +bilingual detection)
-    ├── examples.md                  # 🆕 End-to-end writing examples
+    ├── evolution-analyst-prompt.md  # 🆕 Evolution Analyst v2 protocol (with blend tracking + global stats)
+    ├── template-library.md          # 🆕 15 templates + cross-template fusion guide
+    ├── ai-traces-guide.md           # AI trace avoidance guide (with bilingual detection)
+    ├── examples.md                  # End-to-end writing examples
     └── model-config.md              # Model configuration reference
 ```
 
