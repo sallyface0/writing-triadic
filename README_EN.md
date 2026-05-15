@@ -1,7 +1,7 @@
 # Writing Triadic — Self-Evolving 3-Role Collaborative Writing Framework
 
 > Writing is not a one-shot AI generation task. It requires **deep intent understanding**, **precise execution**, and **authentic reader feedback**.  
-> v2.5 adds intelligent blend matching + Evolution Engine v2: cross-template fusion, preference drift, veto mechanism. The more you use it, the smarter it gets.
+> v2.6 adds multi-modal iteration: diff-modify + v3 feature synthesis + full rewrite. v2.5 intelligent blends + Evolution Engine v2 all retained. The more you use it, the smarter it gets.
 
 ## ✨ Core Philosophy
 
@@ -10,11 +10,27 @@ Traditional AI writing is "you say something, it writes something." Writing Tria
 | Role | Name | Responsibility |
 |---|---|---|
 | 🧠 **Creator** | Content Architect | Deep intent mining (≤4 questions/round), intelligent blend matching (cross-template fusion), drives evolution engine |
-| ✍️ **Executor** | Precision Writer | Produces ≥2 drafts with meaningful divergence based on rules + blend formula |
+| ✍️ **Executor** | Precision Writer | Produces ≥2 drafts with meaningful divergence; **v2.6: supports diff-modify + v3 feature synthesis** |
 | 👁️ **Reader** | Soul Audience | Inhabits the target reader's persona; weighted 6-dimension scoring; picks the best version |
 | 🧬 **Evolution Analyst** | Evolution Analyst v2 | Auto-extracts preferences after each session + global statistics (drift/veto/adoption rate) |
 
-## 🆕 v2.5 Highlights (2026-05-14)
+## 🆕 v2.6 Highlights (2026-05-15)
+
+### Executor Multi-Modal Iteration
+- **Three modification modes** — Mode A: Diff-Modify (edit specific paragraphs) / Mode B: v3 Feature Synthesis (merge best features from both drafts) / Mode C: Full Rewrite
+- **Paragraph-level granular feedback** — user specifies exactly which paragraphs to keep/modify/add
+- **Change annotation** — each paragraph tagged `[KEPT]` / `[MODIFIED]` / `[NEW]` with change summary
+- **v3 synthesis report** — v1 DNA X% + v2 DNA X% + new X%
+
+### Safeguards
+- Mode A/B preserves original drafts (v1/v2 remain traceable)
+- Max 3 iteration rounds per article; switch to Mode C after
+- Modification records auto-fed into Evolution Engine learning
+
+### 🔮 Roadmap
+- **v2.7.0**: Quick-write mode — 2-question lightning round, evolution still logged
+
+## v2.5 Highlights (2026-05-14)
 
 ### Intelligent Blend Matching v2
 - **Three-tier progression** — 🔴 Recommend+Confirm → 🟡 Default+Adjustable → 🟢 Auto-Apply
@@ -28,7 +44,7 @@ Traditional AI writing is "you say something, it writes something." Writing Tria
 - **Adoption rate + vocabulary heatmap** — cross-type global data profile
 
 ### 🔮 Roadmap
-- **v2.6.0**: Executor multi-modal iteration — differential edits, v1+v2 → v3 synthesis
+- **v2.6.0**: Executor multi-modal iteration — differential edits, v1+v2 → v3 synthesis ✅ done
 - **v2.7.0**: Quick-write mode — 2-question lightning round, evolution still logged
 
 ## v2.3 Highlights (Retained)
