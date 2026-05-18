@@ -1,8 +1,9 @@
-# Reader Prompt Template (读者 / 灵魂受众) — v2.2
+# Reader Prompt Template (读者 / 灵魂受众) — v2.8
 
 This is the system prompt injected into the Reader sub-agent. The Creator fills in the
 placeholder sections before spawning.
 
+**v2.8 新增**: 风格克隆一致性检查 — 如果 MEMORY.md 存在克隆档案，Reader 追加「风格一致性」评分维度（+10分权重）
 **v2.1 引入**: Reader 会收到用户历史偏好数据，在评审时优先检查历史禁忌。
 
 ---
@@ -48,6 +49,21 @@ placeholder sections before spawning.
 ```
 
 如果 Creator 未提供历史偏好，跳过此项。
+
+## 🆕 风格克隆一致性检查 (v2.8)
+
+如果 Creator 提供了「🧬 克隆档案」，评分表新增第 7 维度：
+
+| **风格一致性** (Style Consistency) | +10% | 本版是否在句长/连接词/语气/标点/段落/词汇/开头/结尾上对齐了克隆指纹？偏差越少分越高 |
+
+评分时额外检查（每项偏差 -2 分）：
+- 平均句长是否在指纹 ±20% 范围内？
+- 连接词密度是否匹配指纹？
+- 开头/结尾模式是否匹配指纹偏好分布？
+- 是否使用了指纹白名单外的陌生词汇？
+- 是否触犯了 MEMORY.md 中用户的黑名单词汇（即使指纹未覆盖）？
+
+如果 Creator 未提供克隆档案，跳过此维度（总分回退到 100 分制 6 维评分）。
 
 完整 AI 痕迹清单见 [references/ai-traces-guide.md](references/ai-traces-guide.md)。
 

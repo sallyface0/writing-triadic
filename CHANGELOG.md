@@ -1,5 +1,50 @@
 # CHANGELOG
 
+## v2.8.0 (2026-05-18)
+
+### 🧬 Style Cloning Engine
+- 8-D fingerprint extraction (sentence length / connector density / tone granularity / punctuation / paragraph rhythm / vocabulary / opening pattern / closing pattern)
+- Phase 0.5 entry point with calibration dialog protocol
+- Auto-inject style fingerprint into Executor dual-temp pass 2
+- Drift tracking via Evolution Analyst
+- Multi-profile support (work / life / academic)
+
+### 📖 Long-Form Chapter Manager
+- Chapter Manifest for thesis/book-level documents (10K-100K+ words)
+- Cross-chapter consistency watchdog (terminology / citation / tone / word count)
+- Cross-session resume support
+- Separate evolution per chapter with global sync
+
+### 🎓 Template #16: Thesis Proposal (开题报告)
+- Complete skeleton: background → literature → objectives → methodology → innovation → timeline → references
+- Quality standards and prohibition list
+- 6 groups of proposal-specific AI fatigue words
+
+### 🔧 Instant Mode AI-Trace Quick Scan (3→5 items)
+- Added passive voice density check
+- Added closing cliché detection
+
+### 🌱 Evolution Engine Cold-Start Bootstrap
+- Auto-appends 2 preference-probing questions when writing type has zero history
+- Collected preferences auto-written to MEMORY.md
+
+### 🔎 SEO Basics for Blog/Tech Templates
+- Title H1 / meta description / keyword density / subheading rules auto-injected
+
+### 📁 Files Changed
+- SKILL.md — v2.8 frontmatter + style cloning + long-form + cold-start + SEO
+- references/style-cloning-guide.md — NEW (714 lines)
+- references/template-library.md — template #16 + SEO rules for #1/#2
+- references/executor-prompt.md — style fingerprint alignment section
+- references/creator-prompt.md — Phase 0.5 + cold-start bootstrap
+- references/evolution-analyst-prompt.md — style drift tracking + long-form sync
+- references/reader-prompt.md — style consistency dimension +10%
+- CHANGELOG.md — this file
+- README.md / README_EN.md — v2.8 description
+- skills-spring-roadmap.md — v2.8 status
+
+---
+
 ## v2.6.0 (2026-05-15)
 
 ### 🧬 Executor 多模态迭代 — 三种修改模式

@@ -1,16 +1,13 @@
-# Writing Triadic Roadmap (v2.5 onward)
+# Writing Triadic Roadmap (v2.8 onward)
 
-## v2.5.0 (当前开发) — 智能配方匹配 v2 + Evolution Engine v2
+## v2.8.0 (已完成 — 2026-05-18) — 风格克隆 + 长文引擎 + 模板 #16
 
-### A. 智能配方匹配 v2 (Intelligent Blend Matching)
-- 三层渐进机制：推荐+确认 → 默认+可改 → 沿用+免问
-- 跨模板融合：用户可自定义混合比例
-- Evolution Engine 记录配方选择与效果
-
-### B. Evolution Engine v2 (全局统计分析)
-- 跨会话偏好漂移报告
-- 否决权机制（连续低分维度自动标黑）
-- 增量统计，不每次全量扫描
+- ✅ Style Cloning Engine: 8维指纹提取 + 双温注入 + 漂移追踪
+- ✅ Long-Form Chapter Manager: 章节清单 + 一致性看门狗 + 跨会话续写
+- ✅ Template #16 (开题报告): 选题背景→文献→方法→创新点→进度→参考文献
+- ✅ Instant Mode AI-trace scan: 3项→5项硬检
+- ✅ Cold-start bootstrap: 零历史类型自动追加2偏好问题
+- ✅ SEO basics: 博客/技术文档模板注入SEO规则
 
 ---
 
@@ -23,7 +20,7 @@
 - ✅ v3 合成度报告: v1基因X% + v2基因X% + 全新X%
 - ✅ 守护规则: 原版可回溯、3轮熔断、自动纳入进化学习
 
-## v2.7.0 (计划) — 即兴写作模式
+## v2.9.0 (计划) — 即兴写作模式
 - 轻量模式：2 题 → 直出稿（跳调研、Reader）
 - 进化记录仍照写不误
 - 快速模式切换
