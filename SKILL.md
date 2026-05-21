@@ -1,15 +1,15 @@
 ﻿---
 name: writing-triadic
-version: 2.8.0
+version: 2.9.0
 license: MIT
 author: sallyface0
 description: >
-  Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matching, Executor produces drafts with dual-temp writing (high creativity + low calibration) and multi-modal iteration, Reader scores with weighted 6-D review. Evolution Engine v2 adds preference drift + veto. v2.8 adds Style Cloning Engine (8-D fingerprint extraction), Long-Form Chapter Manager (thesis/book), and template #16 (开题报告). 16 templates with genre-specific anti-AI fatigue word lists. The more you use it, the smarter it gets.
+  Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matching, Executor produces drafts with dual-temp writing (high creativity + low calibration) and multi-modal iteration, Reader scores with weighted 6-D review. Evolution Engine v2 adds preference drift + veto. v2.9 adds SEO Content Optimization Module (keyword density / search intent / title scoring / readability / internal linking) and template SEO support expanded. Style Cloning Engine, Long-Form Chapter Manager, and 16 templates retained. The more you use it, the smarter it gets.
 ---
 
-# Writing Triadic v2.8 - 风格克隆 + 长文引擎 + 即兴写作 + 双温分写 + 多模态迭代 + 进化引擎 v2
+# Writing Triadic v2.9 - SEO 模块 + 风格克隆 + 长文引擎 + 即兴写作 + 双温分写 + 多模态迭代
 
-> **v2.8 升级:** 🧬 风格克隆引擎(8维指纹提取,写得像我)、📖 长文档分章协同(论文/书籍级大篇幅管理)、🎓 开题报告模板 #16、🔍 即兴模式 AI 味快速扫描(5项硬检)、🌱 进化引擎冷启动引导、🔎 SEO 基础规则注入。v2.7/v2.6/v2.5 全部内容保留。📚 10份参考文件(含即时/长文协议)。
+> **v2.9 升级:** 🔎 SEO 内容优化模块(关键词密度/搜索意图/标题评分/可读性/内链策略) — 从基础规则升级为独立模块、📋 SEO 适用模板扩展(不止博客+技术文档)。**v2.8 保留:** 🧬 风格克隆引擎、📖 长文档分章协同、🎓 开题报告模板 #16、🔍 即兴模式5项硬检。📚 11份参考文件(新增 SEO 模块)。
 
 ## Overview
 
@@ -379,6 +379,38 @@ See [references/creator-prompt.md](references/creator-prompt.md) for the full Cr
 
 ---
 
+## Phase 1.6: SEO 分析 (Creator — v2.9 新增)
+
+> **触发条件**: 当前模板属于 SEO 适用类型 (#1 技术文档、#2 博客文章、#4 评测、#6 教程指南、#7 产品文案) 且写作目标为公开发布。
+
+Phase 1.5 调研完成后、Phase 2 规则制定前，Creator 自动执行 SEO 分析。详见 [references/seo-module.md](references/seo-module.md)。
+
+### 分步执行
+
+**Step 1: 关键词提取**
+从 `需求分析.md` 提取：主关键词 (1个) + 次级关键词 (2-3个) + 长尾关键词 (1-2个)。
+
+**Step 2: 搜索意图分类**
+自动分类为：信息型 ("如何"/"教程") / 交易型 ("推荐"/"对比") / 导航型 (品牌名) / 商业调查型 ("评测"/"值得买吗")。
+
+**Step 3: 标题优化**
+提供 2-3 个候选标题，按 4 维评分 (关键词位置 30% + 情感吸引力 25% + 长度控制 25% + 点击意愿 20%)，满分 10。输出评分表并推荐最高分标题。
+
+**Step 4: 注入 Phase 2**
+在进入 Phase 2 时，将 SEO 约束自动写入 `写作规则.md`:
+- 关键词密度目标表 (按预估字数自动计算)
+- Meta Description 约束
+- 标题层级规范
+- 可读性目标
+- 内链建议 (从 MEMORY.md 匹配历史文章)
+
+**Step 5: Phase 3 审查**
+Executor 返回初稿后，Creator 在审查时输出「🔎 SEO 检查清单」(6 类 checklist: 标题/关键词/Meta/结构/可读性/内链)。
+
+**跳过条件**: 用户明确不需要 SEO、写作目标非公开、模板非 SEO 适用类型。
+
+---
+
 ## Phase 2: 规则与计划制定 (Creator)
 
 需求确认后(参考调研结果 + 风格档案),创建两份文档:
@@ -434,18 +466,43 @@ See [references/creator-prompt.md](references/creator-prompt.md) for the full Cr
 - 每节关键要点
 - 节间过渡建议
 
-### SEO 基础规则注入 (v2.8 新增)
+### 🔎 SEO 内容优化模块 (v2.9 升级)
 
-当模板为「博客文章」(#2) 或「技术文档」(#1) 时，Phase 2 写作规则中自动追加 SEO 小节：
+> v2.8 仅有 5 条基础 SEO 规则（仅博客/技术文档模板）。v2.9 升级为完整 SEO 模块。详见 [references/seo-module.md](references/seo-module.md)。
 
-```markdown
-## 🔎 SEO 基础约束 (自动注入)
-- 标题 (H1): 包含核心关键词，≤60 字，数字优于形容词
-- Meta Description: 120-160 字摘要，含 CTA 暗示
-- 关键词密度: 核心词出现 2-3 次/千字，避免堆砌
-- 小标题 (H2/H3): 至少 1 个包含长尾关键词
-- 内链提示: 如有相关历史文章，标注可插入链接的位置
+**SEO 模块工作流**（Phase 1.6 → Phase 2 注入 → Phase 3 检查）：
+
 ```
+Phase 1.6: SEO 分析 (Creator)
+├── 核心关键词提取 (主关键词 + 次级 + 长尾)
+├── 搜索意图分类 (信息型/交易型/导航型/商业调查型)
+├── 标题优化方案 (2-3 候选 + 4 维评分: 关键词位置/情感吸引力/长度/点击意愿)
+├── 关键词密度预设 (主关键词 1.5-2.5%, 次级 0.8-1.5%, 长尾 0.5-1.0%)
+└── 注入 Phase 2 写作规则.md「## 🔎 SEO 约束」
+
+Phase 2: 写作规则.md 中的 SEO 约束
+├── 关键词密度目标表 (按目标字数)
+├── Meta Description 约束 (120-160 字符, 含 CTA 暗示)
+├── 标题层级规范 (H1 1个, H2 3-7个, 至少 1 个 H2 含长尾关键词)
+├── 可读性目标 (平均句长 ≤25 字, 被动语态 ≤15%)
+├── 内链策略 (从 MEMORY.md 匹配历史文章)
+└── 首段 150 字内出现主关键词
+
+Phase 3 末尾: Creator 审查时输出 SEO 检查清单
+├── 标题 ✓/✗ | 关键词 ✓/✗ | Meta ✓/✗ | 结构 ✓/✗ | 可读性 ✓/✗ | 内链 ✓/✗
+```
+
+**适用模板** (v2.9 扩展): #1 技术文档、#2 博客文章、#4 评测、#6 教程指南、#7 产品文案、#17 即将新增: SEO 文章。
+
+**跳过条件**: 个人日记/内部汇报/朋友圈/私密文档/小说散文。用户说"不需要 SEO"时跳过。
+
+**关键词密度速查** (自动注入 Phase 2):
+
+| 目标字数 | 主关键词 (1.5-2.5%) | 次级关键词 (0.8-1.5%) |
+|:--------:|:-------------------:|:---------------------:|
+| 1000 字 | 15-25 次 | 8-15 次 |
+| 2000 字 | 30-50 次 | 16-30 次 |
+| 3000 字 | 45-75 次 | 24-45 次 |
 
 ---
 
@@ -940,7 +997,7 @@ See [references/model-config.md](references/model-config.md) for alternative con
 
 ---
 
-## File References (10 files)
+## File References (11 files)
 
 - **[creator-prompt.md](references/creator-prompt.md)** - 创作者完整协议(角色设定、递进逻辑、模板匹配、输出格式、v2.2 增加了历史偏好感知)
 - **[executor-prompt.md](references/executor-prompt.md)** - 执行者完整系统提示词模板(角色约束、差异化策略、禁止清单、输出格式)
@@ -949,6 +1006,7 @@ See [references/model-config.md](references/model-config.md) for alternative con
 - **[template-library.md](references/template-library.md)** - 多场景写作模板库(15 种模板 + 🆕 v2.5 跨模板融合指南)
 - **[ai-traces-guide.md](references/ai-traces-guide.md)** - AI 痕迹高频特征避坑指南(词汇/结构/内容/🆕中英双语混淆四分类,含回译测试法)
 - **[examples.md](references/examples.md)** - 🆕 端到端写作示例(博客文章/朋友圈文案/求职简历三种场景,展示完整 Phase 0-5.5 流程)
+- **[seo-module.md](references/seo-module.md)** - 🆕 SEO 内容优化模块(关键词提取/意图分类/标题评分/密度检测/可读性/内链策略/检查清单)
 - **[model-config.md](references/model-config.md)** - 模型配置方案与切换指南
 - **[instant-mode-protocol.md](references/instant-mode-protocol.md)** - 即兴写作模式完整协议(触发条件、双温单版直出、Creator Lite 审查、守护规则)
 - **[long-form-protocol.md](references/long-form-protocol.md)** - 长文档分章协同完整协议(Chapter Manifest、一致性看门狗、跨会话续写)

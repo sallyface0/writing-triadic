@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v2.9.0 (2026-05-21)
+
+### 🔎 SEO Content Optimization Module
+- Full SEO module replacing v2.8's 5-rule basic injection
+- **6 subsystems**: keyword extraction (primary/secondary/long-tail), search intent classification (4 types), title optimization scoring (4-D, max 10pts), keyword density presets (per word count tier), content readability targets, internal linking strategy (MEMORY.md history-aware)
+- **New Phase 1.6**: SEO analysis runs after research (Phase 1.5), before rule-making (Phase 2)
+- **Phase 3 SEO checklist**: 6-category deliverable (title/keywords/meta/structure/readability/internal-links)
+- **Template support expanded**: from 2 templates (#1 tech doc, #2 blog) to 5 templates (+ #4 review, #6 tutorial, #7 product copy)
+- New reference file: `references/seo-module.md` (200+ lines, complete algorithms and rules)
+
+### 🔧 Minor Updates
+- Template library SEO sections upgraded from v2.8 basic rules to v2.9 module references
+- File references count: 10 → 11
+
 ## v2.8.0 (2026-05-18)
 
 ### 🧬 Style Cloning Engine
