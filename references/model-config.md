@@ -1,4 +1,4 @@
-# Model Configuration Reference — v2.2
+# Model Configuration Reference — v2.9.1
 
 ## Default Models (Recommended)
 
@@ -47,4 +47,4 @@ Non-Chinese users would typically replace:
 
 ## How to Change Models
 
-Edit the `model` parameter in `sessions_spawn` calls within SKILL.md Phase 3 and Phase 4.
+Edit the `model` parameter in `sessions_spawn` calls within SKILL.md Phase 3, Phase 4, Phase 5.1, and Phase 5.5.

@@ -1,15 +1,15 @@
 ﻿---
 name: writing-triadic
-version: 2.9.0
+version: 2.9.1
 license: MIT
 author: sallyface0
 description: >
-  Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matching, Executor produces drafts with dual-temp writing (high creativity + low calibration) and multi-modal iteration, Reader scores with weighted 6-D review. Evolution Engine v2 adds preference drift + veto. v2.9 adds SEO Content Optimization Module (keyword density / search intent / title scoring / readability / internal linking) and template SEO support expanded. Style Cloning Engine, Long-Form Chapter Manager, and 16 templates retained. The more you use it, the smarter it gets.
+  Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matching, Executor produces drafts with dual-temp writing (high creativity + low calibration) and multi-modal iteration, Reader scores with adaptive weighted review. Evolution Engine v2 adds preference drift + veto. v2.9 adds SEO Content Optimization Module; v2.9.1 adds a state contract and stable 100-point scoring for SEO/style extensions. Style Cloning Engine, Long-Form Chapter Manager, and 16 templates retained. The more you use it, the smarter it gets.
 ---
 
-# Writing Triadic v2.9 - SEO 模块 + 风格克隆 + 长文引擎 + 即兴写作 + 双温分写 + 多模态迭代
+# Writing Triadic v2.9.1 - 协议可靠性 + SEO 模块 + 风格克隆 + 长文引擎
 
-> **v2.9 升级:** 🔎 SEO 内容优化模块(关键词密度/搜索意图/标题评分/可读性/内链策略) — 从基础规则升级为独立模块、📋 SEO 适用模板扩展(不止博客+技术文档)。**v2.8 保留:** 🧬 风格克隆引擎、📖 长文档分章协同、🎓 开题报告模板 #16、🔍 即兴模式5项硬检。📚 11份参考文件(新增 SEO 模块)。
+> **v2.9.1 升级:** 新增 `session-state.md` 状态契约与角色交接检查，修正 Reader 在 SEO/风格克隆同时启用时的评分权重，所有扩展维度保持 100 分制。**v2.9 保留:** 🔎 SEO 内容优化模块。**v2.8 保留:** 🧬 风格克隆引擎、📖 长文档分章协同、🎓 开题报告模板 #16。📚 14 份参考文件。
 
 ## Overview
 
@@ -17,7 +17,7 @@ description: >
 |---|---|---|---|
 | **Creator** | 创作者 / 内容架构师 | Main AI (you) | 挖掘需求、匹配模板、调度监督、最终交付、**驱动进化引擎** |
 | **Executor** | 执行者 / 精密写手 | Sub-agent A | 按需求+模板产出 ≥2 版有本质差异的初稿 |
-| **Reader** | 读者 / 灵魂受众 | Sub-agent B | 代入目标读者身份,加权评分,选出最佳版本 |
+| **Reader** | 读者 / 灵魂受众 | Sub-agent B | 代入目标读者身份,按自适应 100 分权重评分,选出最佳版本 |
 
 **核心洞察**:写作不是一次 AI 生成任务。它需要深度理解用户意图(创作者)、精准执行(执行者)、真实读者反馈(读者)。v2.2 让这三个角色产出的所有经验,都沉淀为一个**持续生长的风格大脑**;v2.4 实现 Executor 差异化决策;v2.5 引入**智能配方匹配**(跨模板融合)和 **Evolution Engine v2**(全局统计分析);v2.6 实现 **Executor 多模态迭代**(不重写全稿,精准改指定段落 + 双版本特征合成)。**v2.8 新增风格克隆引擎和长文档分章协同。** 16 种模板覆盖从学术论文到朋友圈的全场景写作。
 
@@ -53,11 +53,11 @@ Phase 0.5: 风格克隆入口
 
 ### Executor 注入协议
 
-参见 [references/style-cloning-guide.md#附录-a-executor-注入协议](references/style-cloning-guide.md)
+参见 [references/style-cloning-guide.md](references/style-cloning-guide.md) 的「附录 A: Executor 注入协议」。
 
 ### 风格克隆与 MEMORY.md
 
-克隆档案完整示例参见 [references/style-cloning-guide.md#附录-b-风格克隆与-memorymd](references/style-cloning-guide.md)
+克隆档案完整示例参见 [references/style-cloning-guide.md](references/style-cloning-guide.md) 的「附录 B: 风格克隆与 MEMORY.md」。
 
 ### 边界规则
 
@@ -130,7 +130,7 @@ Phase 3 Executor prompt 自动注入:全局疲劳词表(ai-traces-guide.md)+模�
 
 ## System Architecture
 
-**数据流**: 用户 → Creator(需求挖掘→模板匹配→联网调研→规则制定) → Executor(≥2版初稿) → Reader(加权评分) → Creator(交付) → Evolution Analyst(进化分析→更新档案)
+**数据流**: 用户 → Creator(需求挖掘→模板匹配→联网调研→规则制定→状态契约维护) → Executor(≥2版初稿) → Reader(自适应加权评分) → Creator(交付) → Evolution Analyst(进化分析→更新档案)
 
 **状态机**: 需求挖掘(≤4轮) → 模板匹配(≥95%置信度) → 联网调研 → 规则计划 → 初稿生成 → 读者评审 → 交付完成 → 进化分析 → 结束。接受/重写/改需求均有回路。
 
@@ -148,22 +148,23 @@ MEMORY.md 是一份**活的写作风格档案**,按写作类型双层索引(类�
 
 ### Auto-Detect Working Directory
 
-On first activation, determine the writing workspace root automatically:
+On first activation, determine the writing workspace root (`{writing_root}`) automatically:
 
-1. Check `USER.md` in the workspace for a "默认工作目录" or working directory note. If found, use `<that_path>/写作/`.
-2. Otherwise, check environment variable `OPENCLAW_WORKING_DIR`.
-3. Otherwise, fall back to `~/写作/` (user home).
+1. Check `USER.md` in the workspace for a "默认工作目录" or working directory note. If found, set `{writing_root}` to `<that_path>/写作/`.
+2. Otherwise, check environment variable `OPENCLAW_WORKING_DIR`. If it already ends with `写作`, use it directly; otherwise append `/写作/`.
+3. Otherwise, set `{writing_root}` to `~/写作/` (user home).
 
-This path is referred to as `{workspace}/写作/` throughout this skill.
+All generated files, persistent memory, and session folders are stored under `{writing_root}`. Do not append an extra `写作/` segment after `{writing_root}`.
 
 ### Directory Structure
 
 ```
-{workspace}/写作/
+{writing_root}/
 ├── MEMORY.md              # 🧠 风格进化档案 (持续生长的偏好+纠错+知识)
 ├── 知识库.md              # 📚 写作知识库(模板技法/行业案例/表达库,带日期归档)
 └── YYYY-MM-DD_HHmm-{topic}/
     ├── 需求分析.md          # Creator 的需求确认卡片
+    ├── session-state.md      # v2.9.1 状态契约与阶段记录
     ├── 联网调研.md          # 联网搜索结果与知识库更新日志
     ├── 写作规则.md          # 针对本次写作的约束规则(含历史偏好注入)
     ├── 写作计划.md          # 大纲与结构计划
@@ -180,12 +181,16 @@ This path is referred to as `{workspace}/写作/` throughout this skill.
 
 **在 Phase 1 需求挖掘之前,Creator 必须先执行:**
 
-1. 读取 `{workspace}/写作/MEMORY.md`
+1. 读取 `{writing_root}/MEMORY.md`
 2. 提取关键信息:
    - 用户偏好的语调、篇幅、表达习惯
    - 历史纠错记录(避免踩同一个坑)
    - 常用主题和模板统计
 3. 在提问时**自然融入**这些信息(不要背诵 MEMORY,而是让它影响你的判断)
+
+### v2.9.1 状态契约初始化
+
+在 Phase 1 锁定需求后，Creator 必须创建或更新当前会话的 `session-state.md`，记录模式、模板/配方、启用模块、阶段状态与关键决策。角色交接与失败处理规则见 [references/state-contract.md](references/state-contract.md)。
 
 例如:如果 MEMORY.md 记录用户讨厌"结尾升华",在询问语调时,可以自然地说:
 > "根据之前的经验,你不太喜欢文章结尾强行拔高。这次我们希望结尾是什么感觉--戛然而止?开放式?还是有一个明确的行动建议?"
@@ -346,7 +351,7 @@ See [references/creator-prompt.md](references/creator-prompt.md) for the full Cr
 
 ### 知识库更新机制
 
-每次调研结束后,同步更新 `{workspace}/写作/知识库.md`:
+每次调研结束后,同步更新 `{writing_root}/知识库.md`:
 
 ```markdown
 ## [YYYY-MM-DD] 调研来源:[主题关键词]
@@ -381,7 +386,7 @@ See [references/creator-prompt.md](references/creator-prompt.md) for the full Cr
 
 ## Phase 1.6: SEO 分析 (Creator — v2.9 新增)
 
-> **触发条件**: 当前模板属于 SEO 适用类型 (#1 技术文档、#2 博客文章、#4 评测、#6 教程指南、#7 产品文案) 且写作目标为公开发布。
+> **触发条件**: 当前模板属于 SEO 适用类型 (#1 技术文档、#2 博客文章、#5 商业/产品文案、#11 产品说明书/教程指南、#15 产品评测) 且写作目标为公开发布。
 
 Phase 1.5 调研完成后、Phase 2 规则制定前，Creator 自动执行 SEO 分析。详见 [references/seo-module.md](references/seo-module.md)。
 
@@ -492,7 +497,7 @@ Phase 3 末尾: Creator 审查时输出 SEO 检查清单
 ├── 标题 ✓/✗ | 关键词 ✓/✗ | Meta ✓/✗ | 结构 ✓/✗ | 可读性 ✓/✗ | 内链 ✓/✗
 ```
 
-**适用模板** (v2.9 扩展): #1 技术文档、#2 博客文章、#4 评测、#6 教程指南、#7 产品文案、#17 即将新增: SEO 文章。
+**适用模板** (v2.9 扩展): #1 技术文档、#2 博客文章、#5 商业/产品文案、#11 产品说明书/教程指南、#15 产品评测。
 
 **跳过条件**: 个人日记/内部汇报/朋友圈/私密文档/小说散文。用户说"不需要 SEO"时跳过。
 
@@ -566,7 +571,7 @@ sessions_spawn:
 
 保存为 `读者点评.md`,包含:
 - 身份代入声明
-- 逐版加权评分表(6 维度 + AI 痕迹扣分)
+- 逐版加权评分表(基础 6 维度 + 按需启用的 SEO/风格克隆维度；总分始终为 100)
 - 亮点与硬伤剖析
 - 最终选择与理由
 - 改进建议 3-5 条
@@ -861,7 +866,7 @@ sessions_spawn:
 
 ### 进化输出物
 
-Evolution Analyst 返回结构化的更新建议,Creator 将其合并写入 `{workspace}/写作/MEMORY.md` 和 `{workspace}/写作/知识库.md`:
+Evolution Analyst 返回结构化的更新建议,Creator 将其合并写入 `{writing_root}/MEMORY.md` 和 `{writing_root}/知识库.md`:
 
 #### MEMORY.md 更新项
 
@@ -997,23 +1002,26 @@ See [references/model-config.md](references/model-config.md) for alternative con
 
 ---
 
-## File References (11 files)
+## File References (14 files)
 
-- **[creator-prompt.md](references/creator-prompt.md)** - 创作者完整协议(角色设定、递进逻辑、模板匹配、输出格式、v2.2 增加了历史偏好感知)
-- **[executor-prompt.md](references/executor-prompt.md)** - 执行者完整系统提示词模板(角色约束、差异化策略、禁止清单、输出格式)
-- **[reader-prompt.md](references/reader-prompt.md)** - 读者完整系统提示词模板(身份代入、加权六维评分、高压红线扣分、结构化输出、v2.2 增加了历史禁忌感知)
-- **[evolution-analyst-prompt.md](references/evolution-analyst-prompt.md)** - 🆕 进化分析师协议(偏好判断、纠错提炼、情境标注、冲突解决、v2.5 新增配方追踪 + 全局统计)
-- **[template-library.md](references/template-library.md)** - 多场景写作模板库(15 种模板 + 🆕 v2.5 跨模板融合指南)
-- **[ai-traces-guide.md](references/ai-traces-guide.md)** - AI 痕迹高频特征避坑指南(词汇/结构/内容/🆕中英双语混淆四分类,含回译测试法)
-- **[examples.md](references/examples.md)** - 🆕 端到端写作示例(博客文章/朋友圈文案/求职简历三种场景,展示完整 Phase 0-5.5 流程)
-- **[seo-module.md](references/seo-module.md)** - 🆕 SEO 内容优化模块(关键词提取/意图分类/标题评分/密度检测/可读性/内链策略/检查清单)
-- **[model-config.md](references/model-config.md)** - 模型配置方案与切换指南
+- **[creator-prompt.md](references/creator-prompt.md)** - 创作者完整协议(角色设定、递进逻辑、模板匹配、输出格式、历史偏好感知、SEO 调度)
+- **[state-contract.md](references/state-contract.md)** - v2.9.1 状态契约(会话状态、必备产物、角色交接检查、失败处理)
+- **[executor-prompt.md](references/executor-prompt.md)** - 执行者完整系统提示词模板(角色约束、差异化策略、禁止清单、双温分写、多模态迭代)
+- **[reader-prompt.md](references/reader-prompt.md)** - 读者完整系统提示词模板(身份代入、自适应100分评分、高压红线扣分、历史禁忌与风格/SEO检查)
+- **[evolution-analyst-prompt.md](references/evolution-analyst-prompt.md)** - 进化分析师协议(偏好判断、纠错提炼、配方追踪、全局统计、风格漂移)
+- **[template-library.md](references/template-library.md)** - 多场景写作模板库(16 种模板、AI 疲劳词表、跨模板融合指南、SEO 适用模板)
+- **[style-cloning-guide.md](references/style-cloning-guide.md)** - 风格克隆引擎深化指南(8 维指纹、校准、漂移、多档案、Executor 注入协议)
+- **[ai-traces-guide.md](references/ai-traces-guide.md)** - AI 痕迹高频特征避坑指南(词汇/结构/内容/中英双语混淆检测)
+- **[examples.md](references/examples.md)** - 端到端写作示例(博客文章/朋友圈文案/求职简历三种场景,展示完整 Phase 0-5.5 流程)
+- **[seo-module.md](references/seo-module.md)** - SEO 内容优化模块(关键词提取/意图分类/标题评分/密度检测/可读性/内链策略/检查清单)
 - **[instant-mode-protocol.md](references/instant-mode-protocol.md)** - 即兴写作模式完整协议(触发条件、双温单版直出、Creator Lite 审查、守护规则)
 - **[long-form-protocol.md](references/long-form-protocol.md)** - 长文档分章协同完整协议(Chapter Manifest、一致性看门狗、跨会话续写)
+- **[inkos-insights.md](references/inkos-insights.md)** - InkOS 启发记录(双阶段写作、输入治理、去 AI 味、长度治理、记忆结构改进)
+- **[model-config.md](references/model-config.md)** - 模型配置方案与切换指南
 
 ## File Management
 
-- 所有文件产出到 `{workspace}/写作/`(自动检测)
+- 所有文件产出到 `{writing_root}/`(自动检测)
 - 每次写作会话创建子文件夹:`YYYY-MM-DD_HHmm-{简写主题}/`
 - 历史会话不删除,作为写作资产积累
 - MEMORY.md 根级别跨会话持久化(进化引擎持续更新)

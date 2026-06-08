@@ -1,117 +1,69 @@
-# Writing Triadic — Self-Evolving 3-Role Collaborative Writing Framework
+# Writing Triadic — Self-Evolving 3-Role Collaborative Writing Skill
 
-> Writing is not a one-shot AI generation task. It requires **deep intent understanding**, **precise execution**, and **authentic reader feedback**.  
-> v2.6 adds multi-modal iteration: diff-modify + v3 feature synthesis + full rewrite. v2.5 intelligent blends + Evolution Engine v2 all retained. The more you use it, the smarter it gets.
+> Writing is not a one-shot AI generation task. It needs **deep intent understanding**, **precise execution**, and **authentic reader feedback**.  
+> v2.9.1 adds protocol reliability: a session state contract and adaptive 100-point scoring. v2.9 SEO, v2.8 Style Cloning, Long-Form Chapter Management, Template #16 Thesis Proposal, v2.7 Instant Mode, v2.6 Multi-Modal Iteration, and v2.5 Intelligent Blends are all retained.
 
 ## ✨ Core Philosophy
 
-Traditional AI writing is "you say something, it writes something." Writing Triadic decomposes writing into three roles plus an evolution engine:
+Writing Triadic decomposes writing into three roles plus an evolution engine:
 
 | Role | Name | Responsibility |
 |---|---|---|
-| 🧠 **Creator** | Content Architect | Deep intent mining (≤4 questions/round), intelligent blend matching (cross-template fusion), drives evolution engine |
-| ✍️ **Executor** | Precision Writer | Produces ≥2 drafts with meaningful divergence; **v2.6: supports diff-modify + v3 feature synthesis** |
-| 👁️ **Reader** | Soul Audience | Inhabits the target reader's persona; weighted 6-dimension scoring; picks the best version |
-| 🧬 **Evolution Analyst** | Evolution Analyst v2 | Auto-extracts preferences after each session + global statistics (drift/veto/adoption rate) |
+| 🧠 **Creator** | Content Architect | Mines intent, matches templates, coordinates agents, supervises delivery, drives evolution |
+| ✍️ **Executor** | Precision Writer | Produces drafts with meaningful divergence, dual-temperature writing, diff edits, and v3 synthesis |
+| 👁️ **Reader** | Soul Audience | Inhabits the target reader persona, uses adaptive 100-point scoring, and selects the strongest version |
+| 🧬 **Evolution Analyst** | Evolution Analyst v2 | Extracts preferences, corrections, style drift, adoption rate, vocabulary heatmaps, and veto signals |
 
-## 🆕 v2.6 Highlights (2026-05-15)
+## 🆕 v2.9.1 Highlights (2026-06-08)
 
-### Executor Multi-Modal Iteration
-- **Three modification modes** — Mode A: Diff-Modify (edit specific paragraphs) / Mode B: v3 Feature Synthesis (merge best features from both drafts) / Mode C: Full Rewrite
-- **Paragraph-level granular feedback** — user specifies exactly which paragraphs to keep/modify/add
-- **Change annotation** — each paragraph tagged `[KEPT]` / `[MODIFIED]` / `[NEW]` with change summary
-- **v3 synthesis report** — v1 DNA X% + v2 DNA X% + new X%
+### 🧩 Protocol Reliability Patch
 
-### Safeguards
-- Mode A/B preserves original drafts (v1/v2 remain traceable)
-- Max 3 iteration rounds per article; switch to Mode C after
-- Modification records auto-fed into Evolution Engine learning
+- **New `session-state.md` contract**: records mode, template, blend, active modules, phase status, and decision log
+- **New `references/state-contract.md`**: defines required artifacts, role handoffs, and failure handling
+- **Adaptive Reader scoring**: SEO and style-clone dimensions redistribute weights; the base score always remains 100
+- **Executor constraint warnings**: word count, SEO, style, and historical taboo conflicts must be reported instead of silently ignored
+- **Cleaner evolution attribution**: SEO preferences go to the SEO archive; style-clone signals go to the style archive
 
-### 🔮 Roadmap
-- **v2.7.0**: Quick-write mode — 2-question lightning round, evolution still logged
+## 🆕 v2.9 Highlights (2026-05-21)
 
-## v2.5 Highlights (2026-05-14)
+### 🔎 SEO Content Optimization Module
 
-### Intelligent Blend Matching v2
-- **Three-tier progression** — 🔴 Recommend+Confirm → 🟡 Default+Adjustable → 🟢 Auto-Apply
-- **Cross-template fusion** — e.g., `Tech Blog:70% + Product Review:30%`
-- **6 preset blends + custom blend protocol**
-- **Safety net** — user can say "no blends" anytime to fall back to classic mode
+- **6 subsystems**: keyword extraction, search intent classification, title scoring, density presets, readability targets, internal linking
+- **New Phase 1.6**: runs after research and before rule-making when SEO applies
+- **Phase 3 SEO checklist**: title, keywords, meta, structure, readability, internal links
+- **Expanded template support**: #1 Technical Documentation, #2 Blog Post, #5 Business/Product Copy, #11 Product Manual/Tutorial Guide, #15 Product Review
+- **Skip rules**: private writing, internal reports, fiction/essays, WeChat Moments, or explicit "no SEO"
 
-### Evolution Engine v2
-- **Preference drift detection** — auto-tracks how preferences shift over time per writing type
-- **Veto mechanism** — consecutive low scores on a dimension → auto-flagged / blacklisted
-- **Adoption rate + vocabulary heatmap** — cross-type global data profile
+### Reference Updates
 
-### 🔮 Roadmap
-- **v2.6.0**: Executor multi-modal iteration — differential edits, v1+v2 → v3 synthesis ✅ done
-- **v2.7.0**: Quick-write mode — 2-question lightning round, evolution still logged
+- `references/seo-module.md` adds the full SEO protocol.
+- `references/template-library.md` now includes SEO notes for every SEO-supported template.
 
-## v2.3 Highlights (Retained)
+## Retained Highlights
 
-### 15 Writing Templates (v2.2 + refined)
+### v2.8
 
-From academic thesis to WeChat Moments — one framework, all scenarios:
+- **Style Cloning Engine**: 8-D fingerprint extraction, calibration dialog, dual-temperature injection, drift tracking, multi-profile support
+- **Long-Form Chapter Manager**: Chapter Manifest, consistency watchdog, cross-session resume, chapter-level evolution
+- **Template #16 Thesis Proposal**: background, literature review, objectives, method, innovation, schedule, references
+- **Cold-Start Bootstrap**: asks two preference-probing questions for a new writing type
 
-| Category | Template |
-|---|---|
-| Technical Docs | TL;DR → Prerequisites → Step-by-Step → Gotchas |
-| Blog Posts | Hook → Why It Matters → Body → Actionable Takeaway → CTA |
-| Personal Essays | Micro Detail → Associative Drift → Inner Conflict → Open Ending |
-| Academic Papers | Abstract → Introduction → Methodology → Findings → Limitations |
-| Business Copy | Problem → Agitation → Solution → Proof → CTA |
-| Narrative Fiction | Inciting Incident → Rising Action → Climax → Resolution |
-| Social Shorts | Title Hook → Persona Anchor → Point-by-Point → Tags + Engagement |
-| Video Scripts | 0-3s Hook → Value Promise → Progressive Points → CTA |
-| Email / Business Letters | Subject Line → Core Message → Details → Closing |
-| Speeches | Opening Bomb → Body Expansion → Emotional Peak → Memorable Close |
-| Product Manuals | Safety Warning → Quick Start → Detailed Ops → Troubleshooting |
-| Thesis / Dissertation | Introduction → Lit Review → Methodology → Results & Analysis → Discussion → Conclusion |
-| Resume / CV | Header → Objective → Education → Experience → Projects → Skills |
-| Social Post (Moments) | Hook → Narrative → Emotional Landing |
-| Product Review | One-Liner Verdict → Quick Specs → Deep Experience → Comparison → Buying Advice |
+### v2.7
 
-### Writing Type × Dimension Memory Matrix
+- **Instant Mode**: at most two lightweight question rounds, then direct output
+- **Dual-temp writing**: high creativity pass plus low-temperature calibration
+- **AI-trace quick scan**: forbidden items, fatigue words, length, passive voice, cliche ending
 
-```
-[Business Copy] tagline → "don't hard-sell" → softer tone, ban puffery adjectives
-[Blog Post] tech share → "too few code examples" → ≥3 code samples
-[Thesis] proposal → "lit review too thin" → every subsection must critique prior work
-[Social Post] daily share → "sounds like a work report" → drop bullet points, use conversational narrative
-...
-```
+### v2.6
 
-**Preferences from different writing types stay isolated.** What you learn about writing ad copy won't leak into your technical blog.
+- **Mode A Diff-Modify**: edit only specified paragraphs
+- **Mode B v3 Feature Synthesis**: merge the best parts of v1 and v2
+- **Mode C Full Rewrite**: restart from rules when tone/structure changes heavily
 
-### Three-Layer Preference Injection
+### v2.5
 
-```
-Global Preferences (cross-type, always injected)
-  ↓
-Type-Specific Exact Match ([Blog Post] preferences)
-  ↓
-Adjacent Type Reference ([Tech Doc] falls back to [Blog Post] if no records)
-```
-
-### Instant Correction + Auto Memory
-
-You say "too verbose" → it fixes immediately + persists to MEMORY.md. Next time auto-avoided. **One session, one lesson learned.**
-
-### 🆕 v2.3: Bilingual Cross-Contamination Detection
-
-New Section 4 in the AI Traces Guide. Detects:
-- **English brain writing Chinese** (passive voice overload, "it is worth noting that" calques, connector-stuffed sentence starts)
-- **Chinese brain writing English** ("With the development of...", "plays an important role in", "not only... but also" overuse)
-- Back-translation test: if translating your Chinese back to English reads naturally, the Chinese is probably AI-flavored
-
-### 🆕 v2.3: End-to-End Examples (`references/examples.md`)
-
-Three complete walkthroughs:
-1. **Blog Post** — "How to Use AI Coding Assistants Effectively" (full Phase 0-5.5 with evolution output)
-2. **Social Post** — Project milestone celebration (30-min WeChat Moments from scratch)
-3. **Resume Optimization** — From "job description clone" to STAR-sentence power resume
-
-Each example shows real Creator questions, Executor outputs, Reader scores, and Evolution Analyst summaries.
+- **Intelligent Blend Matching**: Recommend+Confirm → Default+Adjustable → Auto-Apply
+- **Evolution Engine v2**: preference drift, veto rules, adoption rate, vocabulary heatmap
 
 ## 🚀 Quick Start
 
@@ -125,8 +77,8 @@ openclaw skills install writing-triadic
 
 Just say what you want to write:
 
-- "Write a blog post about prompt engineering"
-- "Draft a product launch copy"
+- "Write a blog post about AI coding assistants"
+- "Draft product launch copy"
 - "Write my performance review"
 - "Start a sci-fi story"
 - "Optimize my resume"
@@ -134,72 +86,92 @@ Just say what you want to write:
 
 ### Workflow
 
-```
+```text
 User request
     ↓
-Phase 0: Read style evolution archive (knows what you hate & love)
+Phase 0: Read style evolution archive
     ↓
-Phase 1: Creator mines intent (≤4 questions/round, history-informed)
+Phase 0.5: Style cloning entry, if a sample is provided
     ↓
-Phase 1 Enhanced: 🆕 intelligent blend recommendation (cross-template fusion)
+Phase 1: Creator mines intent
     ↓
-Phase 1.5: Auto web research + knowledge base update
+Phase 1 enhanced: intelligent blend recommendation
     ↓
-Phase 2: Template matching (15 choose 1) → rules (with history injection)
+Phase 1.5: Web research + knowledge base update
     ↓
-Phase 3: Executor produces ≥2 drafts
+Phase 1.6: SEO analysis, when public publishing + SEO-supported template apply
     ↓
-Phase 4: Reader evaluates as human audience → picks best
+Phase 2: Template matching (16 choose 1) + rules with history injection
     ↓
-Phase 5: Present to you → your corrections instantly memorized
+Phase 3: Executor produces drafts
     ↓
-Phase 5.5: Evolution Analyst v2 auto-extracts + global stats 🧬
+Phase 4: Reader evaluates as the target audience
     ↓
-    💡 Preference drift detection + veto review
+Phase 5: Creator presents final draft and handles corrections
+    ↓
+Phase 5.5: Evolution Analyst updates memory and statistics
 ```
+
+## 📚 Supported Writing Types (v2.9.1 — 16 Templates)
+
+| Category | Template Skeleton |
+|---|---|
+| Technical Documentation | TL;DR → Prerequisites → Step-by-Step → Gotchas |
+| Blog Post | Hook → Why It Matters → Body → Actionable Takeaway → CTA |
+| Personal Essay | Micro Detail → Associative Drift → Inner Conflict → Open Ending |
+| Academic / Industry Paper | Abstract → Introduction → Methodology → Findings → Limitations |
+| Business Copy | Problem → Agitation → Solution → Proof → CTA |
+| Narrative Fiction | Inciting Incident → Rising Action → Climax → Resolution |
+| Social Short | Title Hook → Persona Anchor → Point-by-Point → Tags + Engagement |
+| Video Script / Voiceover | 0-3s Hook → Value Promise → Progressive Points → CTA |
+| Email / Business Letter | Subject Line → Core Message → Details → Closing |
+| Speech / Presentation | Opening Bomb → Body Expansion → Emotional Peak → Memorable Close |
+| Product Manual | Safety Warning → Quick Start → Detailed Ops → Troubleshooting |
+| Thesis / Dissertation | Introduction → Lit Review → Methodology → Results → Discussion → Conclusion |
+| Resume / CV | Header → Objective → Education → Experience → Projects → Skills |
+| WeChat Moments | Hook → Narrative Body → Emotional Landing |
+| Product Review | Verdict → Quick Specs → Deep Experience → Comparison → Buying Advice |
+| Thesis Proposal | Background → Literature → Objectives → Method → Innovation → Schedule → References |
 
 ## 🛡️ AI Trace Detection
 
-Built-in comprehensive AI trace avoidance guide covering:
-- **Vocabulary Warning List**: 40+ high-risk AI words (Chinese + English)
-- **Structural Patterns**: Parallel-holic, ending-elevation syndrome, em dash abuse
-- **Content Hollow Signals**: Fence-sitting, time-dodging, vague attribution
-- **Historical Taboo Check**: Reader prioritizes checking user history, -10 points per violation
-- 🆕 **Bilingual Cross-Contamination**: English-brain-Chinese, Chinese-brain-English detection with back-translation test
+The skill includes a full AI-trace avoidance guide covering high-risk words, structural cliches, hollow-content signals, bilingual cross-contamination, and user-specific historical taboos.
 
 ## 🔧 Model Configuration
 
 | Role | Default Model | Rationale |
 |---|---|---|
-| Creator | `deepseek/deepseek-v4-pro` | Deep reasoning + blend matching |
+| Creator | `deepseek/deepseek-v4-pro` | Deep reasoning and quality control |
 | Executor | `deepseek/deepseek-v4-flash` | Fast multi-draft generation |
 | Reader | `deepseek/deepseek-v4-pro` | Critical evaluation |
-| Evolution Analyst v2 | `deepseek/deepseek-v4-pro` | Preference judgment + global stats |
+| Evolution Analyst v2 | `deepseek/deepseek-v4-pro` | Preference judgment and global statistics |
 
-Customizable: All-Pro mode, All-Flash mode, Ollama local privacy mode.
-
-For non-DeepSeek users:
-- OpenAI: `openai/gpt-5` + `openai/gpt-5-mini`
-- Anthropic: `anthropic/claude-sonnet-4-20250514` + `anthropic/claude-haiku-4-5-20251001`
+Custom modes include all-Pro, all-Flash, and local Ollama privacy mode. See [references/model-config.md](references/model-config.md).
 
 ## 📁 File Structure
 
-```
+```text
 writing-triadic/
-├── SKILL.md                         # Main file (v2.5)
+├── SKILL.md                         # Main skill file (v2.9.1)
 ├── README.md                        # Chinese README
 ├── README_EN.md                     # This file
 ├── CHANGELOG.md                     # Update log
 ├── LICENSE                          # MIT License
 ├── skills-spring-roadmap.md         # Version roadmap
 └── references/
-    ├── creator-prompt.md            # Creator protocol (with history awareness + blend recommendation)
-    ├── executor-prompt.md           # Executor system prompt (with divergence decision tree)
-    ├── reader-prompt.md             # Reader system prompt (with taboo check)
-    ├── evolution-analyst-prompt.md  # 🆕 Evolution Analyst v2 protocol (with blend tracking + global stats)
-    ├── template-library.md          # 🆕 15 templates + cross-template fusion guide
-    ├── ai-traces-guide.md           # AI trace avoidance guide (with bilingual detection)
-    ├── examples.md                  # End-to-end writing examples
+    ├── creator-prompt.md            # Creator protocol
+    ├── executor-prompt.md           # Executor prompt
+    ├── reader-prompt.md             # Reader prompt with adaptive scoring
+    ├── evolution-analyst-prompt.md  # Evolution Analyst protocol
+    ├── template-library.md          # 16 templates + blends + SEO notes
+    ├── style-cloning-guide.md       # Style cloning guide
+    ├── ai-traces-guide.md           # AI trace avoidance guide
+    ├── examples.md                  # End-to-end examples
+    ├── seo-module.md                # SEO Content Optimization Module
+    ├── state-contract.md            # Session state and handoff contract
+    ├── instant-mode-protocol.md     # Instant Mode protocol
+    ├── long-form-protocol.md        # Long-form chapter protocol
+    ├── inkos-insights.md            # InkOS-inspired design notes
     └── model-config.md              # Model configuration reference
 ```
 
@@ -209,4 +181,4 @@ writing-triadic/
 
 ## 📝 Changelog
 
-See [CHANGELOG.md](CHANGELOG.md)
+See [CHANGELOG.md](CHANGELOG.md).
