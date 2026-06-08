@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v2.9.1 (2026-06-08)
+
+### Protocol Reliability Patch
+- Added `references/state-contract.md` with session state, required artifacts, role handoff checks, and failure handling.
+- Updated `SKILL.md` to create `session-state.md` for each full writing session after intent lock.
+- Fixed Reader scoring ambiguity: SEO and style-clone dimensions now use adaptive 100-point weighting instead of expanding the max score.
+- Updated Executor prompt to report constraint conflicts and unmet rules instead of silently ignoring SEO/style/word-count/history conflicts.
+- Updated Evolution Analyst prompt to read `session-state.md` and attribute SEO/style/long-form signals to the correct memory archive.
+- Updated README / README_EN / roadmap to document v2.9.1 and the new reference file count.
+
 ## v2.9.0 (2026-05-21)
 
 ### 🔎 SEO Content Optimization Module
@@ -7,12 +17,13 @@
 - **6 subsystems**: keyword extraction (primary/secondary/long-tail), search intent classification (4 types), title optimization scoring (4-D, max 10pts), keyword density presets (per word count tier), content readability targets, internal linking strategy (MEMORY.md history-aware)
 - **New Phase 1.6**: SEO analysis runs after research (Phase 1.5), before rule-making (Phase 2)
 - **Phase 3 SEO checklist**: 6-category deliverable (title/keywords/meta/structure/readability/internal-links)
-- **Template support expanded**: from 2 templates (#1 tech doc, #2 blog) to 5 templates (+ #4 review, #6 tutorial, #7 product copy)
-- New reference file: `references/seo-module.md` (200+ lines, complete algorithms and rules)
+- **Template support expanded**: from 2 templates (#1 tech doc, #2 blog) to 5 templates (+ #5 business/product copy, #11 product manual/tutorial guide, #15 product review)
+- New reference file: `references/seo-module.md` (complete algorithms and rules)
 
 ### 🔧 Minor Updates
 - Template library SEO sections upgraded from v2.8 basic rules to v2.9 module references
-- File references count: 10 → 11
+- File references count corrected to match the actual 13 reference files
+- Writing root variable clarified as `{writing_root}` to prevent accidental `写作/写作/` output paths
 
 ## v2.8.0 (2026-05-18)
 
