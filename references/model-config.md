@@ -39,11 +39,13 @@ For sensitive/private content that should not leave the machine:
 
 Note: 8K context limits mean long-form writing may need chunking. Evolution analysis may be less precise with local models.
 
-## For International Users
+## For Users of Other AI Providers
 
-Non-Chinese users would typically replace:
+Users with access to different AI providers can substitute:
 - `deepseek/deepseek-v4-pro` → `openai/gpt-5` or `anthropic/claude-sonnet-4-20250514`
 - `deepseek/deepseek-v4-flash` → `openai/gpt-5-mini` or `anthropic/claude-haiku-4-5-20251001`
+
+Select based on model capability, not geography. Any provider with comparable reasoning + generation capabilities works.
 
 ## How to Change Models
 

@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## v2.9.2 (2026-06-18)
+
+### 🔒 Security & Privacy Hardening
+- **New `PRIVACY.md`**: comprehensive data collection, retention (90-day default), deletion controls, GDPR/CCPA compliance statements, web research consent policy.
+- **Consent Gate for web research (Phase 1.5)**: Creator must now ask for explicit user consent before any external search. Shows exact search queries that will be transmitted.
+- **Style Cloning privacy consent (Phase 0.5)**: Step 0 added — privacy notice before fingerprint extraction. Users are told what 8 dimensions are analyzed and where data is stored.
+- **Data minimization for sub-agents (Phase 4)**: Reader now receives only task-relevant preferences (≤5 forbidden items + ≤5 must-includes + style direction), never full MEMORY.md.
+- **Narrowed Instant Mode triggers**: Removed auto-activation for "直接写", "别问了直接写", "≥40字", "≥3 MEMORY records", and bare "按上次的来". Creator now asks before switching modes.
+- **Fixed nationality-based classification**: model-config.md changed from "Non-Chinese users" to "For Users of Other AI Providers" — recommends by capability, not geography.
+- **Privacy transparency throughout**: Phase 0, MEMORY.md section, cold-start bootstrap, Evolution Engine (Phase 5.5) all now include privacy notices and consent checkpoints.
+- **Updated SKILL.md frontmatter**: v2.9.2, privacy-first description, removed "The more you use it, the smarter it gets".
+- **Updated README**: Added Security & Privacy section at top, fixed workflow labels, fixed "auto-memory" to "consent-gated memory".
+
 ## v2.9.1 (2026-06-08)
 
 ### Protocol Reliability Patch

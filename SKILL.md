@@ -1,15 +1,29 @@
 ﻿---
 name: writing-triadic
-version: 2.9.1
+version: 2.9.2
 license: MIT
 author: sallyface0
 description: >
-  Self-evolving 3-role writing framework: Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matching, Executor produces drafts with dual-temp writing (high creativity + low calibration) and multi-modal iteration, Reader scores with adaptive weighted review. Evolution Engine v2 adds preference drift + veto. v2.9 adds SEO Content Optimization Module; v2.9.1 adds a state contract and stable 100-point scoring for SEO/style extensions. Style Cloning Engine, Long-Form Chapter Manager, and 16 templates retained. The more you use it, the smarter it gets.
+  Privacy-first 3-role writing framework with explicit consent controls. Creator mines intent via progressive Q&A (full) or Instant Mode (≤2 rounds, direct output), intelligent blend matching, Executor produces drafts with dual-temp writing (high creativity + low calibration) and multi-modal iteration, Reader scores with adaptive weighted review. Evolution Engine v2 adds preference drift + veto with consent-gated memory. v2.9 adds SEO Content Optimization Module; v2.9.1 adds a state contract and stable 100-point scoring for SEO/style extensions; v2.9.2 adds PRIVACY.md, consent gates for web research and style cloning, data minimization, and narrowed triggers. Style Cloning Engine, Long-Form Chapter Manager, and 16 templates retained.
 ---
 
-# Writing Triadic v2.9.1 - 协议可靠性 + SEO 模块 + 风格克隆 + 长文引擎
+# Writing Triadic v2.9.2 - 安全隐私加固版
 
-> **v2.9.1 升级:** 新增 `session-state.md` 状态契约与角色交接检查，修正 Reader 在 SEO/风格克隆同时启用时的评分权重，所有扩展维度保持 100 分制。**v2.9 保留:** 🔎 SEO 内容优化模块。**v2.8 保留:** 🧬 风格克隆引擎、📖 长文档分章协同、🎓 开题报告模板 #16。📚 14 份参考文件。
+> **v2.9.2 升级:** 🔒 安全隐私加固 — 新增 PRIVACY.md、联网 consent gate、风格克隆隐私警告、数据最小化、收紧即兴模式触发。**v2.9.1 保留:** 新增 `session-state.md` 状态契约与角色交接检查，修正 Reader 在 SEO/风格克隆同时启用时的评分权重，所有扩展维度保持 100 分制。**v2.9 保留:** 🔎 SEO 内容优化模块。**v2.8 保留:** 🧬 风格克隆引擎、📖 长文档分章协同、🎓 开题报告模板 #16。📚 15 份参考文件。
+
+## 🔒 Security & Privacy
+
+> **请在使用前阅读:** [PRIVACY.md](PRIVACY.md) — 完整的数据收集、存储、保留和删除政策。
+
+**核心承诺:**
+- 🔐 **所有数据仅存储在本地** — 不上传云端，不用于训练外部模型
+- ✋ **联网调研前征求同意** — 每次对外搜索前显式询问，显示将发送的搜索词
+- 🗑️ **你随时可以删除数据** — 说"清除我的写作数据"即可删除所有偏好和画像
+- 👁️ **透明存储** — 每次写入 MEMORY.md 前告知你将要存储的内容
+- 🚫 **子 Agent 最小化数据** — Executor/Reader 只接收当次任务所需的最少信息
+- 🏠 **离线模式可用** — `local privacy mode` 使用 Ollama 本地模型，数据永不离开本机
+
+---
 
 ## Overview
 
@@ -44,10 +58,15 @@ description: >
 ```
 Phase 0.5: 风格克隆入口
 ├── 触发: 用户说「学我的风格」/「照我的写法」/ 粘贴样本
-├── Step 1: Creator 提取 8 维指纹 → 写入 MEMORY.md「🧬 克隆档案」
+├── Step 0 (新增): Creator 出示隐私提示
+│    └── ⚠️ 「我将分析你提供的文本，提取8个维度的风格特征（句长/用词/语气/标点/段落/词汇/开头/结尾）。
+│            这些特征会持久保存到本地 MEMORY.md，用于后续写作。你可以随时说'忘记我的写作风格'来删除。
+│            是否继续？」
+├── Step 1: 用户同意后，Creator 提取 8 维指纹
 ├── Step 2: Creator 出示指纹摘要给用户确认
 │    └── 准确吗?
-├── Step 3: 用户确认后 → 后续所有写作 Phase 2 自动注入风格指纹
+├── Step 3: 用户确认后 → 指纹写入 MEMORY.md「🧬 克隆档案」
+├── Step 4: 后续所有写作 Phase 2 自动注入风格指纹
 └── 进化: 每次写作后,Evolution Analyst 微调指纹(漂移追踪)
 ```
 
@@ -140,6 +159,8 @@ Phase 3 Executor prompt 自动注入:全局疲劳词表(ai-traces-guide.md)+模�
 
 MEMORY.md 是一份**活的写作风格档案**,按写作类型双层索引(类型 → 偏好维度),每次写作自动更新。不同写作类型的偏好相互隔离--写宣传语学到的规则不会错误应用到技术博客上。
 
+> 🔒 **隐私声明:** MEMORY.md 存储在本地，不会上传云端。每次写入前系统会简要告知将要存储的内容。默认保留 90 天。说「清除我的写作数据」随时删除。详见 [PRIVACY.md](PRIVACY.md)。
+
 **Creator 读取时机**:Phase 1 开始前(了解偏好)、Phase 2 规则制定前(注入历史偏好)、Phase 5 交付时(对比历史)。完整结构与写入协议见 [references/evolution-analyst-prompt.md](references/evolution-analyst-prompt.md)。
 
 ---
@@ -179,6 +200,8 @@ All generated files, persistent memory, and session folders are stored under `{w
 
 ## Phase 0: 读取风格档案 (Creator)
 
+> 💡 **透明提示:** 写作开始前，系统会自动读取 MEMORY.md 了解你的历史偏好。这些数据仅本地存储，不会上传。详见 [PRIVACY.md](PRIVACY.md)。
+
 **在 Phase 1 需求挖掘之前,Creator 必须先执行:**
 
 1. 读取 `{writing_root}/MEMORY.md`
@@ -187,6 +210,7 @@ All generated files, persistent memory, and session folders are stored under `{w
    - 历史纠错记录(避免踩同一个坑)
    - 常用主题和模板统计
 3. 在提问时**自然融入**这些信息(不要背诵 MEMORY,而是让它影响你的判断)
+4. ⚠️ **首次使用或 MEMORY.md 无记录时**，告知用户：「系统会在本地保存你的写作偏好，用于提升后续质量。说'清除我的写作数据'可随时删除。」
 
 ### v2.9.1 状态契约初始化
 
@@ -225,7 +249,7 @@ All generated files, persistent memory, and session folders are stored under `{w
 - 有没有一篇你觉得写得特别好的同类文章?(我学习一下它的节奏和结构)
 ```
 
-冷启动收集的信息自动写入 MEMORY.md 对应类型专区,下次同类写作不再触发。
+冷启动收集的信息经用户确认后写入 MEMORY.md 对应类型专区,下次同类写作不再触发。
 
 ### 模板匹配逻辑 (核心优先级)
 
@@ -331,7 +355,28 @@ See [references/creator-prompt.md](references/creator-prompt.md) for the full Cr
 
 ## Phase 1.5: 联网调研与知识库同步 (Creator)
 
-需求确认后、规则制定前,**自动执行**联网调研。Creator 无需询问用户。
+> ⚠️ **隐私提示:** 联网调研会将你的写作主题和关键词发送到外部搜索服务。如果需要保密，请拒绝联网。
+
+### Consent Gate (强制)
+
+需求确认后、规则制定前，Creator **必须先征得用户同意**：
+
+```
+🔍 联网调研请求
+
+为提升写作质量，我建议搜索以下方向：
+- [搜索关键词 1]
+- [搜索关键词 2]
+- [搜索关键词 3]
+
+⚠️ 这些搜索词将发送到外部搜索服务 (Tavily/Web Search)。
+
+是否同意联网调研？
+- "同意" → 开始搜索
+- "跳过" → 不搜索，用现有知识直接写
+```
+
+**仅在用户明确同意后**才执行以下调研流程。用户说"跳过"/"不用"/"不需要" → 直接跳至 Phase 1.6 或 Phase 2。
 
 ### 调研流程
 
@@ -557,7 +602,10 @@ The task must include:
 3. 写作规则.md
 4. 目标受众详细画像
 5. 平台/场景描述
-6. 🆕 **MEMORY.md 中的用户历史偏好**(让 Reader 知道用户讨厌什么)
+6. 🆕 **仅传递当次任务相关的用户偏好摘要**(禁止项/必须项/风格方向 — 不传递完整 MEMORY.md)
+   - Creator 从 MEMORY.md 中提取**仅与本次写作类型和主题相关**的偏好条目
+   - 最多 5 条禁止项 + 5 条必须项 + 风格方向简述
+   - **禁止**将完整历史纠错记录、其他写作类型的偏好、校准历史传递给 Reader
 
 Example:
 ```
@@ -827,7 +875,11 @@ Executor 在文末输出合成度(内部追溯,不输出给用户):
 
 ## 🧠 Phase 5.5: 进化引擎 v2 (Creator - 自动执行)
 
-**v2.1 引入,v2.5 升级为 v2。** 每次写作会话结束后(用户确认满意 / 表示结束 / 不再修改),Creator 自动触发进化分析,无需用户操作。
+**v2.1 引入,v2.5 升级为 v2。** 每次写作会话结束后(用户确认满意 / 表示结束 / 不再修改),Creator 触发进化分析。
+
+> ⚠️ **隐私提示:** 进化分析会将本次写作的偏好提炼写入本地 MEMORY.md。
+> 在写入前，Creator 简要告知用户将要更新的内容。用户可以说「这次不用记」跳过写入。
+> 详见 [PRIVACY.md](PRIVACY.md)。
 
 **v2.5 新增**: 全局统计分析(偏好漂移 + 否决权),在单次进化分析结束时顺带执行增量统计。
 
